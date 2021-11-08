@@ -1,0 +1,49 @@
+html{
+    font-size: 100%;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+// Flexbox
+
+.flex {
+
+    display: flex;
+
+    &-jc-sb{
+        justify-content: space-between;
+    }
+
+    &-jc-c{
+        justify-content: center;
+    }
+
+    &-ai-c{
+        align-items: center;
+    }
+
+}
+
+// Button 
+button, .button {
+
+    display: inline-block;
+    padding: 1rem 0.5rem ;
+    text-decoration:"none";
+    border: 0;
+    
+    cursor: pointer;
+   
+    
+   
+   
+    
+   
+
+        
+
+}

@@ -1,0 +1,16 @@
+.navbar{
+    
+    
+    background-color: black;
+    color: white;
+    height: 3rem;
+    align-items: center;
+
+}
+.navbar-icons{
+
+    display:flex;
+    justify-content: space-between;
+    
+
+}
