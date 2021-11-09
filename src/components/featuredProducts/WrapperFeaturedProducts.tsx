@@ -1,9 +1,7 @@
 import React from 'react'
 import TopSectionProduct from './TopSectionProduct'
-import '../../styles/_sectionProducts.scss'
 
-
-const SectionProducts = () => {
+const WrapperFeaturedProducts = () => {
     return (
         <div className="sectionProducs">
             <TopSectionProduct />
@@ -11,4 +9,4 @@ const SectionProducts = () => {
     )
 }
 
-export default SectionProducts
+export default WrapperFeaturedProducts

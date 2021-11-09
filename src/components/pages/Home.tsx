@@ -1,7 +1,11 @@
 import React from 'react'
-import SectionProducts from '../featuredProducts/SectionProducts'
+
+import WrapperFeaturedProducts from '../featuredProducts/WrapperFeaturedProducts'
 import Navbar from '../header/Navbar'
 import ImageHero from '../hero/ImageHero'
+import WrapperSearchBox from '../searchBox/WrapperSearchBox'
+
+
 
 
 
@@ -10,7 +14,8 @@ const home = () => {
         <div>
             <Navbar />
             <ImageHero />
-            <SectionProducts />
+            <WrapperFeaturedProducts />
+            <WrapperSearchBox />
         </div>
     )
 }

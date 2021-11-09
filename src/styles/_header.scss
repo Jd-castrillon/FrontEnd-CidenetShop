@@ -1,5 +1,22 @@
 .header{
 
+    &__navbar{
+    
+    
+        background-color: black;
+        color: white;
+        height: 3rem;
+       
+    
+    }
+
+    &__select{
+
+        color: white;
+        background-color: black;
+        outline: none;
+        border: 0px;
+    }
     &__toggle{ // mobile menu   Toggle
         
         > span{        
@@ -16,4 +33,20 @@
             }
         }
     }
+
+    &__iconCidenet{
+    
+        background-image: url("../images/iconCidenet.jpg");
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center  ;
+        min-height: 1rem;
+        background-size: 80%;
+        width: 4rem;
+        
+    }
+
+    
+    
 }

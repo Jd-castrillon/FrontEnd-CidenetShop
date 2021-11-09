@@ -5,7 +5,7 @@ import IconSearch from '../layout/IconSearch'
 
 const SearchCar = () => {
     return (
-        <div className="navbar-icons">
+        <div className="navbar-icons flex flex-jc-sb">
             <div className=""><IconSearch /></div>
           
             <div className=""><IconCart /></div>
