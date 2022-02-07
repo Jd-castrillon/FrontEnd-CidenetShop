@@ -1,15 +1,32 @@
 .header{
 
+    &__wrapper{
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        
+    }
+
     &__navbar{
     
     
         background-color: black;
         color: white;
-        height: 3rem;
-       
-    
+        min-height: 3rem;
+        
+        width: 100%;
+        
+        
     }
-
+    &__wrapper-buttons{
+       padding-top: 0.6rem;
+       padding-right: 1rem;
+    }
+    &__buttons{
+        color: white;
+        padding-right: 2rem;
+    }
+    
     &__select{
 
         color: white;
@@ -40,12 +57,20 @@
         position: relative;
         background-size: cover;
         background-repeat: no-repeat;
-        background-position: center  ;
+        background-position: top  ;
         min-height: 1rem;
-        background-size: 80%;
+        background-size: 100%;
         width: 4rem;
+        left: 50px;
+       
         
     }
+
+    &__wrapper-burgger-menu{
+        padding-top: 0.7rem;
+        padding-left: 0.6rem;
+    }
+
 
     
     

@@ -1,23 +1,13 @@
-import React from 'react'
+import React from "react";
 
-import WrapperFeaturedProducts from '../featuredProducts/WrapperFeaturedProducts'
-import Navbar from '../header/Navbar'
-import ImageHero from '../hero/ImageHero'
-import WrapperSearchBox from '../searchBox/WrapperSearchBox'
-
-
-
-
+import ItemListContainer from "../../containers/ItemListContainer";
 
 const home = () => {
-    return (
-        <div>
-            <Navbar />
-            <ImageHero />
-            <WrapperFeaturedProducts />
-            <WrapperSearchBox />
-        </div>
-    )
-}
+  return (
+    <div>
+      <ItemListContainer />
+    </div>
+  );
+};
 
-export default home
+export default home;

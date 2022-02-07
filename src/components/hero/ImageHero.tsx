@@ -1,12 +1,15 @@
-import React from 'react'
-import '../../styles/_hero.scss';
+import React from "react";
+import "../../styles/_hero.scss";
 
-const ImageHero = () => {
-    return (
-        <div className="hero">
-            
-        </div>
-    )
+interface Props {
+
+  sectionImage: string;
 }
 
-export default ImageHero
+
+const ImageHero = ({ sectionImage } : Props) => {
+  const section =  `hero-${sectionImage}`
+  return <div className={section}></div>;
+};
+
+export default ImageHero;

@@ -1,0 +1,87 @@
+.register{
+
+
+
+    &__wrapper{
+        width: 8rem;
+        height: 10rem;
+    }
+
+    
+
+    &__form{
+        border: black solid 1px;
+        width: 30rem;
+        height: 33rem;
+        background-color: rgb(255, 255, 255);
+    }
+
+    &__main{
+       margin-left: 1rem;
+      
+       margin-right: 1rem;
+     
+        height: 20rem;
+    
+    }
+
+    &__iconCidenet{
+        
+        margin-top: 1rem;
+        background-image: url("../images/iconCidenet.jpg");
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center  ;
+        min-height: 5rem;
+        background-size: 100%;
+        width: 5rem;
+        left: 190px;
+        border-radius: 50px;
+        background-color: black;
+    }
+
+
+    &__input{
+        
+        padding-left: 0.5rem;
+        margin: 0;
+        
+    }
+
+    &__cualquiercosa{
+        
+        
+        height: 21rem;
+       
+        width: 100%;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: flex-end;
+       
+        background-image: url('../images/hero.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 27% ;
+        min-height: 12rem;
+        background-size: 100%;
+        width: 100%;
+        height: 10%;
+    
+        
+    }
+     
+    &__button{
+        width: 8rem;
+        padding-right: 5rem;
+        margin-left: 9rem;
+    }
+    &__column{
+        width: 14rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+}

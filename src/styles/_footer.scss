@@ -1,0 +1,45 @@
+.footer{
+
+    position: fixed;
+    height: 3rem;
+    
+   
+   
+    &__wrapperFooter{
+
+    position: fixed;
+    background-color: black;
+    height: 5rem;
+    min-width: 100%;
+        
+    }
+
+    &__icon{
+        background-image: url('../images/iconCidenet.jpg');
+        position: relative;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center 50%;
+        padding-left: 2rem;
+        min-height: 7rem;
+        background-size: 80%;
+        width: 4rem;
+    }
+
+    &__line{
+        
+        > span{      
+
+            display: block;
+            width: 65rem;
+            height: 1px;
+            background-color: gray;
+            margin-bottom: 2rem;
+
+         
+        }
+    }
+
+
+
+}

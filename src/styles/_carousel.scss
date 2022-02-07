@@ -1,0 +1,83 @@
+.carousel {
+  &__root {
+
+    
+     
+    display: flex;
+
+    h3 {
+      padding-bottom: 0.5rem;
+      padding-left: 0.3rem;
+      left: 0px;
+      right: 100px;
+    }
+
+    margin-top: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    
+
+    .item-list {
+
+
+      :hover {
+       color: rgba(193, 197, 255, 0.432);
+      }
+    }
+  }
+
+  &__grid-list {
+    height: 13rem;
+    flex-wrap: nowrap;
+    transform: translateZ(0);
+    z-index: 1;
+    border-radius: 5%;   
+    
+
+
+  }
+  &__title-bar {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.7) 0%,
+      rgba(0, 0, 0, 0.3) 70%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
