@@ -14,6 +14,7 @@ import { MenuItem } from "@mui/material";
 
 
 import * as Yup from "yup";
+import NavigateBar from "../header/NavigateBar";
 
 interface FormModel {
   documentType: string;
@@ -58,6 +59,7 @@ const Resgister = () => {
 
   return (
     <div className="register_wrapper">
+      <NavigateBar />
       {message ? (
         <Alert severity="error">Ha ocurrido un error, intentalo nuevamente!</Alert>
       ) : null}

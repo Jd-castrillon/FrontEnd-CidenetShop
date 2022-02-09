@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -15,6 +15,11 @@ interface Props {
   onChangeAddress: (n: string) => void;
   handleCreateOrder: () => void;
 }
+interface FormModel {
+  address: string;
+  departamento: string;
+  city: string;
+}
 
 const Formulario: React.FC<Props> = ({
   handleClose,
@@ -24,20 +29,27 @@ const Formulario: React.FC<Props> = ({
   onChangeAddress,
   handleCreateOrder,
 }: Props) => {
+  const [address, setAddress] = useState("");
+  const [departamento, setDepartamento] = useState("");
+  const [city, setCity] = useState("");
+
   const handleChangeAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeAddress(e.target.value);
+    setAddress(e.target.value);
   };
   const handleChangeCity = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeCity(e.target.value);
+    setCity(e.target.value);
   };
   const handleChangeDepartamento = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChangeDepartamento(e.target.value);
+    setDepartamento(e.target.value);
   };
 
   return (
     <div>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>✔️  Un poco más de información</DialogTitle>
+        <DialogTitle>✔️ Un poco más de información</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Nos alegramos que te hayan gustado nuestros productos, estamos cerca
@@ -78,8 +90,12 @@ const Formulario: React.FC<Props> = ({
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancelar</Button>
-          <Button onClick={handleCreateOrder}>Finalizar pedido</Button>
+          <Button  onClick={handleClose}>
+            Cancelar
+          </Button>
+          <Button disabled={city === "" || address === "" || departamento === ""} onClick={handleCreateOrder}>
+            Finalizar pedido
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

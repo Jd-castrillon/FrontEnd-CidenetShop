@@ -14,9 +14,10 @@ import { Order, OrderDetails } from "../../types/ItemProduct";
 import AddToOrder from "../../service/AddToOrder";
 
 import TableCart from "./TableCart";
+import NavigateBar from "../header/NavigateBar";
 
 const Cart = () => {
-  const { cartItem, resetAmountCart,  updateStockInCart } =
+  const { cartItem, resetAmountCart, updateStockInCart } =
     useContext(CartContext);
   const { userOnline } = useContext(AuthContext);
   const [setShowForm, setSetShowForm] = useState(false);
@@ -86,8 +87,7 @@ const Cart = () => {
       return setOutOfStockMessage(true);
     }
 
-    console.log(departamento);
-    console.log(city);
+ 
     const response = await PostCreateOrder(order, userOnline[0].token);
     console.log(response.message);
 
@@ -113,6 +113,8 @@ const Cart = () => {
 
   return (
     <div>
+      <NavigateBar />
+
       {setShowForm ? (
         <Formulario
           open={setShowForm}

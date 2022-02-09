@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 
 import { login } from "../../service/loginService";
+import NavigateBar from "../header/NavigateBar";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,8 +39,6 @@ const Login = () => {
       const user = await login(userName, password);
       addUserOnline(user);
 
-      console.log(userOnline[0].token);
-
       // window.localStorage.setItem("user", getUserByEmail);
       // window.localStorage.setItem("token", user.token);
       // window.localStorage.setItem(
@@ -50,7 +49,7 @@ const Login = () => {
       //   })
       // );
       console.log(userOnline);
-      if (cartItem.length > 0) {
+      if (userOnline.length > 0 && cartItem.length > 0) {
         navigate("/cart");
       } else if (userOnline.length > 0) {
         navigate("/");
@@ -65,6 +64,7 @@ const Login = () => {
 
   return (
     <div className="login__image">
+      <NavigateBar />
       <div className="login__main">
         <Grid
           container

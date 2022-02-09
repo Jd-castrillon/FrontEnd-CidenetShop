@@ -7,7 +7,6 @@ import ItemListContainer from "./containers/ItemListContainer";
 
 import Login from "./components/login/Login";
 
-import NavigateBar from "./components/header/NavigateBar";
 import Resgister from "./components/register/Resgister";
 import ItemDetailContainer from "./containers/ItemDetailContainer";
 import Cart from "./components/cart/Cart";
@@ -18,7 +17,6 @@ function App() {
       <AuthProvider>
         <CartProvider>
           <BrowserRouter>
-            <NavigateBar />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route
@@ -34,7 +32,6 @@ function App() {
               <Route path="/register" element={<Resgister />} />
               <Route path="*" element={<Navigate to="/" />} />
             </Routes>
-            
           </BrowserRouter>
         </CartProvider>
       </AuthProvider>

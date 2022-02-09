@@ -8,7 +8,7 @@ import ImageHero from "../components/hero/ImageHero";
 import CarouselRaking from "../components/carousel/CarouselRaking";
 
 import TextField from "@mui/material/TextField";
-
+import NavigateBar from "../components/header/NavigateBar";
 
 const ItemListContainer = () => {
   const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
@@ -18,6 +18,8 @@ const ItemListContainer = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
+    setItemsFilter([])
+    setSearch("")
     let url: string = `http://localhost:7070/jdshop/products/${productType}`;
 
     const getProducts = async (): Promise<ItemProduct[]> => {
@@ -37,8 +39,6 @@ const ItemListContainer = () => {
       getProducts().then((res) => setItemProduct(res));
     }
   }, [productType]);
-
-
 
   const hanledChange = (e: any) => {
     setSearch(e.target.value);
@@ -63,31 +63,29 @@ const ItemListContainer = () => {
     return <Spinner />;
   }
 
-  const  sectionImage = productType
+  const sectionImage = productType;
 
   return (
     <div className="section-products__wrapper-products">
+      <NavigateBar />
       <ImageHero sectionImage={sectionImage} />
-     
+
       <CarouselRaking />
-      
-      
+
       <div className="section-products__wrapper-input">
-        
         <TextField
-            
-            autoFocus
-            margin="dense"
-            id="search"
-            label="¿Buscas un nuevo look?"
-            type="text"
-            fullWidth
-            variant="standard"
-            value={search}
-            onChange={hanledChange}
-          />
+          autoFocus
+          margin="dense"
+          id="search"
+          label="¿Buscas un nuevo look?"
+          type="text"
+          fullWidth
+          variant="standard"
+          value={search}
+          onChange={hanledChange}
+        />
       </div>
-     
+
       {itemsFilter.length > 0 ? (
         <ItemSectionProductList list={itemsFilter} />
       ) : (

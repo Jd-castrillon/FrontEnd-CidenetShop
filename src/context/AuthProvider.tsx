@@ -17,11 +17,13 @@ const AuthProvider: FC = ({ children }) => {
   const userOnline: AuthUserType[] = [];
 
   const addUserOnline = (user: AuthUserType) => {
-    if (userOnline.length > 0 ) {
-      userOnline.pop();
-      userOnline.push(user);
-    } else {
-      userOnline.push(user);
+    if (user.token !== undefined && user !== null) {
+      if (userOnline.length > 0) {
+        userOnline.pop();
+        userOnline.push(user);
+      } else {
+        userOnline.push(user);
+      }
     }
   };
 

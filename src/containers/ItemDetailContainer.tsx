@@ -7,6 +7,7 @@ import ItemDetail from "../components/Item/ItemDetail";
 import { ItemProduct } from "../types/ItemProduct";
 
 import ImageHero from "../components/hero/ImageHero";
+import NavigateBar from "../components/header/NavigateBar";
 
 export const ItemProductDefaultValues: ItemProduct = {
   id: 0,
@@ -54,6 +55,7 @@ const ItemDetailContainer = () => {
 
   return (
     <div>
+      <NavigateBar />
       <ImageHero sectionImage=""/>
       <Box minHeight="70vh">
         {loading === true ? <Spinner /> : <ItemDetail item={item} />}

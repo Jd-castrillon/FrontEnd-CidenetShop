@@ -124,7 +124,7 @@ const ItemDetail = ({ item }: Props) => {
                       marginRight: "1.5rem",
                     }}
                   >
-                    Finalizar compra
+                    Ir al carrito
                   </Button>
                 </Link>
               </div>
