@@ -6,7 +6,7 @@ import NavigateBar from "../header/NavigateBar";
 
 const OrderRefusedMessage = () => {
   return (
-    <div style={{ margin: "2rem" }}>
+    <div>
       <NavigateBar />
       <Box minHeight="77vh" style={{ padding: "2rem" }}>
         <Alert text="❌ Nos hemos quedado sin stock" />

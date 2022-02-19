@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { CartContext } from "../../context/CartProvider";
 
@@ -22,8 +22,9 @@ import NavigateBar from "../header/NavigateBar";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { state } = useLocation();
 
-  const { userOnline, addUserOnline } = React.useContext(AuthContext);
+  const { userOnline, addUserOnline, isAdmin } = React.useContext(AuthContext);
   const { cartItem } = React.useContext(CartContext);
 
   const [userName, setUserName] = useState("");
@@ -37,23 +38,17 @@ const Login = () => {
 
     try {
       const user = await login(userName, password);
+      console.log(user);
+
       addUserOnline(user);
 
-      // window.localStorage.setItem("user", getUserByEmail);
-      // window.localStorage.setItem("token", user.token);
-      // window.localStorage.setItem(
-      //   "authorities",
-      //   user.authorities.map((e: { authority: any }) => {
-      //     console.log(e.authority);
-      //     return e.authority;
-      //   })
-      // );
-      console.log(userOnline);
       if (userOnline.length > 0 && cartItem.length > 0) {
         navigate("/cart");
-      } else if (userOnline.length > 0) {
+      } else if (userOnline.length > 0 && !isAdmin()) {
         navigate("/");
-      } else {
+      } else if (userOnline.length > 0 ) {
+        navigate(state?.path || "/");
+      } else{
         setMessage(true);
       }
     } catch (error) {

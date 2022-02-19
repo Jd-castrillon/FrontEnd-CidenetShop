@@ -1,13 +1,18 @@
 import React, { FC } from "react";
 
+
 import { AuthContextType } from "../types/AuthContextType";
 import { AuthUserType } from "../types/AuthUserType";
 
 const contextDefaultValues: AuthContextType = {
+
   userOnline: [],
+  adminOnline: [],
   addUserOnline: () => {},
+  addAdminOnline: () => {},
   removeUserOnline: () => {},
   isOnline: () => 0,
+  isAdmin: () => false,
 };
 
 export const AuthContext =
@@ -15,6 +20,22 @@ export const AuthContext =
 
 const AuthProvider: FC = ({ children }) => {
   const userOnline: AuthUserType[] = [];
+  const adminOnline: AuthUserType[] = [];
+
+  const addAdminOnline = (admin: AuthUserType) => {
+    if (admin.token !== undefined && admin !== null) {
+      if (adminOnline.length > 0) {
+        userOnline.pop();
+        adminOnline.pop();
+        adminOnline.push(admin);
+      } else {
+        adminOnline.push(admin);
+      }
+    }
+  };
+
+
+
 
   const addUserOnline = (user: AuthUserType) => {
     if (user.token !== undefined && user !== null) {
@@ -36,13 +57,27 @@ const AuthProvider: FC = ({ children }) => {
     return userOnline.length;
   };
 
+  const isAdmin = () => {
+    console.log("Verificando si es un admin");
+    if (userOnline.length > 0 &&  userOnline[0].authorities.find(
+      (authority) => authority.authority === "admin")) {
+      
+      return true;
+    }
+     return false
+    //return true;
+  };
+
   return (
     <AuthContext.Provider
       value={{
+        adminOnline,
+        addAdminOnline,
         userOnline,
         addUserOnline,
         removeUserOnline,
         isOnline,
+        isAdmin,
       }}
     >
       {children}

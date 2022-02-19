@@ -15,11 +15,7 @@ interface Props {
   onChangeAddress: (n: string) => void;
   handleCreateOrder: () => void;
 }
-interface FormModel {
-  address: string;
-  departamento: string;
-  city: string;
-}
+
 
 const Formulario: React.FC<Props> = ({
   handleClose,
@@ -59,7 +55,7 @@ const Formulario: React.FC<Props> = ({
             required
             autoFocus
             margin="dense"
-            id="name"
+            
             label="Departamento"
             type="text"
             fullWidth
@@ -70,7 +66,7 @@ const Formulario: React.FC<Props> = ({
             required
             autoFocus
             margin="dense"
-            id="name"
+            
             label="Ciudad"
             type="text"
             fullWidth

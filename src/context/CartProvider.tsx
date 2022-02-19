@@ -47,10 +47,9 @@ const CartProvider: FC = ({ children }) => {
     );
     if (item && orderDetails.quantity > 0) {
       item.amount = orderDetails.quantity;
-    }else if(item && orderDetails.quantity === 0){
-        deleteByOutOfStock(orderDetails.idProduct , orderDetails.size)
+    } else if (item && orderDetails.quantity === 0) {
+      deleteByOutOfStock(orderDetails.idProduct, orderDetails.size);
     }
-
   };
 
   const deleteProduct = (itemCount: ItemProduct) => {
@@ -76,10 +75,7 @@ const CartProvider: FC = ({ children }) => {
   };
 
   const totalAmount = () => {
-    return cartItem.reduce(
-      (accumulator: number, item) => accumulator + item.amount,
-      0
-    );
+    return cartItem.length;
   };
 
   const resetAmountCart = () => {

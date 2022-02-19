@@ -10,6 +10,9 @@ import Login from "./components/login/Login";
 import Resgister from "./components/register/Resgister";
 import ItemDetailContainer from "./containers/ItemDetailContainer";
 import Cart from "./components/cart/Cart";
+import Administration from "./components/admin/Administration";
+
+import RequireAuth from "./routers/RequireAuth";
 
 function App() {
   return (
@@ -18,6 +21,14 @@ function App() {
         <CartProvider>
           <BrowserRouter>
             <Routes>
+              <Route
+                path="/admin"
+                element={
+                  <RequireAuth>
+                    <Administration />
+                  </RequireAuth>
+                }
+              />
               <Route path="/" element={<Home />} />
               <Route
                 path="/type/:productType"

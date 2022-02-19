@@ -11,6 +11,7 @@ import Formulario from "../forms/BuyForm";
 import QueryOutOfStock from "../../service/QueryOutOfStock";
 import { PostCreateOrder } from "../../service/PostCreateOrder";
 import { Order, OrderDetails } from "../../types/ItemProduct";
+import Spinner from "../spinner/Spinner";
 import AddToOrder from "../../service/AddToOrder";
 
 import TableCart from "./TableCart";
@@ -27,6 +28,7 @@ const Cart = () => {
   const [departamento, setDepartamento] = useState("");
   const [city, setCity] = useState("");
   const [address, setAddress] = useState("");
+  const [spinner, setSpinner] = useState(false);
   const navigate = useNavigate();
 
   const onChangeAddress = (n: any) => {
@@ -41,7 +43,13 @@ const Cart = () => {
     setDepartamento(n);
   };
 
-  if (cartItem.length === 0 && !orderOk && !orderBad) {
+  if (
+    cartItem.length === 0 &&
+    !orderOk &&
+    !orderBad &&
+    !outOfStockMessage &&
+    !spinner
+  ) {
     return <NoProductMessage />;
   }
 
@@ -69,6 +77,7 @@ const Cart = () => {
   };
 
   const handleCreateOrder = async () => {
+    setSpinner(true);
     const queryOutOfStock = await QueryOutOfStock(
       orderDetails,
       userOnline[0].token
@@ -83,24 +92,25 @@ const Cart = () => {
         updateStockInCart(element);
       });
 
+      setSpinner(false);
       setSetShowForm(false);
       return setOutOfStockMessage(true);
     }
-
- 
     const response = await PostCreateOrder(order, userOnline[0].token);
-    console.log(response.message);
 
     if (response.message !== "Orden guardada") {
+      setSpinner(false);
       console.log("No se pudo hacer la compra");
       setOrderBad(true);
       resetAmountCart();
     } else {
+      setSpinner(false);
       resetAmountCart();
       setOrderOk(true);
     }
   };
-  if (true) {
+  if (spinner) {
+    return <Spinner />;
   }
 
   if (orderOk) {

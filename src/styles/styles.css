@@ -67,7 +67,7 @@ button,
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 2;
+  z-index: 3;
 }
 
 .header__navbar {
@@ -645,5 +645,41 @@ button,
   height: 1.5rem;
   width: 5rem;
   margin-left: 1rem;
+}
+
+.addProduct__input {
+  margin-top: 2.5rem;
+}
+
+.addProduct-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+}
+
+.container-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-right: 1rem;
+}
+
+.container-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.addProduct-btn {
+  padding-top: 5.5rem;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -11,7 +11,7 @@ export type ItemProduct = {
     id: number;
     name: string;
     color: string;
-    productType: string;
+    gender: string;
     brand: string;
     existingQuantity: existingQuantity[];
     picture: string;

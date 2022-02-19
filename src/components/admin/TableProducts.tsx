@@ -1,14 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { CartContext } from "../../context/CartProvider";
-import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Table, TableBody, TableCell } from "@material-ui/core";
 import { TableContainer, TableHead, TableRow } from "@material-ui/core";
-import { Paper, Box } from "@material-ui/core";
-
+import { Paper } from "@material-ui/core";
+import { getProducts } from "../../service/GetProducts";
+import { ItemProduct } from "../../types/ItemProduct";
+import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Link } from "react-router-dom";
-
-import Buttons from "../buttons/Buttons";
 
 const useStyles = makeStyles({
   root: {
@@ -19,13 +17,21 @@ const useStyles = makeStyles({
   },
 });
 
-interface Props {
-  setShowForm: (open: boolean) => void;
-}
+const TableProducts = () => {
+  const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
 
-const TableCart: React.FC<Props> = ({ setShowForm }) => {
-  const { cartItem, totalCost, deleteProduct } = React.useContext(CartContext);
-  
+  useEffect(() => {
+    let url: string = `http://localhost:7070/jdshop/products/`;
+
+    const getListProducts = async () => {
+      const products = getProducts(url);
+
+      products.then((res) => setItemProduct(res));
+
+      //setItemProduct(await products);
+    };
+    getListProducts();
+  }, [itemProduct.length]);
 
   const classes = useStyles();
 
@@ -34,17 +40,20 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
       <Paper className={classes.root} style={{ zIndex: 1 }}>
         <TableContainer>
           <Table className="" stickyHeader aria-label="sticky table">
-            <TableHead style={{ zIndex: 0 }}>
+            <TableHead>
               <TableRow>
                 <TableCell style={{ minWidth: 50 }}>Producto</TableCell>
                 <TableCell align="right" style={{ minWidth: 80 }}>
-                  Talla
+                  Genero
                 </TableCell>
-                <TableCell align="right" style={{ minWidth: 100 }}>
-                  Cantidad
+                <TableCell align="right" style={{ width: 190 }}>
+                  Descripcion
                 </TableCell>
                 <TableCell align="right" style={{ minWidth: 130 }}>
                   Precio
+                </TableCell>
+                <TableCell align="right" style={{ minWidth: 130 }}>
+                  Marca
                 </TableCell>
                 <TableCell align="right" style={{ minWidth: 120 }}>
                   {" "}
@@ -53,11 +62,8 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cartItem.map((item , index) => {
+              {itemProduct.map((item, index) => {
                 let urlImage: string = `data:image/JPG;base64,${item.picture}`;
-                const handleDelete = () => {
-                  deleteProduct(item);
-                };
                 return (
                   <TableRow key={index}>
                     <TableCell component="th" scope="row">
@@ -65,15 +71,16 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
                         <img
                           src={urlImage}
                           alt="img"
-                          style={{ width: "82px" , borderRadius:"5%" }}
+                          style={{ width: "82px", borderRadius: "5%" }}
                         />
                       </Link>
                     </TableCell>
-                    <TableCell align="right">{item.size}</TableCell>
-                    <TableCell align="right">{item.amount}</TableCell>
+                    <TableCell align="right">{item.gender}</TableCell>
+                    <TableCell align="right">{item.description}</TableCell>
                     <TableCell align="right">{item.price}</TableCell>
+                    <TableCell align="right">{item.brand}</TableCell>
                     <TableCell align="right">
-                      <button onClick={handleDelete}>
+                      <button>
                         <DeleteOutlineOutlinedIcon />
                       </button>
                     </TableCell>
@@ -82,15 +89,10 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
               })}
             </TableBody>
           </Table>
-          <Box display="flex" justifyContent="flex-end" p={1}>
-            Costo total : {totalCost()}
-          </Box>
         </TableContainer>
-
-        <Buttons setShowForm={setShowForm} />
       </Paper>
     </div>
   );
 };
 
-export default TableCart;
+export default TableProducts;

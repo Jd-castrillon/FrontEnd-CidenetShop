@@ -18,8 +18,6 @@ const IconsSesion = () => {
   };
 
   if (userOnline.length > 0) {
-    console.log(userOnline.length);
-
     if (
       userOnline[0].authorities.find(
         (authority) => authority.authority === "admin"
@@ -27,9 +25,18 @@ const IconsSesion = () => {
     ) {
       return (
         <div className="flex flex-jc-sb">
-          <div >
-            <button onClick={logOut} type="button">
-              <LogoutIcon style={{ paddingLeft: "1rem", color: "white" }} />
+          <div>
+            <button
+              onClick={logOut}
+              type="button"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                height: "1.5rem",
+              }}
+            >
+              <p style={{ color: "white" }}>Salir</p>{" "}
+              <LogoutIcon style={{ paddingLeft: "0.5rem", color: "white" }} />
             </button>
           </div>
           <ButtonAdmin />

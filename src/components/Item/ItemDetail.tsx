@@ -34,7 +34,7 @@ const ItemDetail = ({ item }: Props) => {
         id: item.id,
         name: item.name,
         color: item.color,
-        productType: item.productType,
+        gender: item.gender,
         brand: item.brand,
         existingQuantity: item.existingQuantity,
         picture: item.picture,

@@ -128,7 +128,7 @@ let RegistrationForm: (props: FormikProps<FormModel> ) => JSX.Element = ({
                   id="documentType"
                   name="documentType"
                   value={values.documentType}
-                  label="Tipo de documento"
+                  
                   onChange={handleChange}
                 >
                   <MenuItem value="cedula de ciudadania">
@@ -140,8 +140,8 @@ let RegistrationForm: (props: FormikProps<FormModel> ) => JSX.Element = ({
                 </Select>
               </div>
               <div className="register__input">
-                {errors.name && touched.name ? (
-                  <div style={{ color: "red" }}>{errors.name}</div>
+                {errors.name &&  touched.name ? (
+                  <div style={{ color: "red", paddingBottom:"0.3rem" }}>{errors.name}</div>
                 ) : null}
                 <TextField
                   type="text"

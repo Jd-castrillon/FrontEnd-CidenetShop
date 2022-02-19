@@ -13,14 +13,14 @@ export const ItemProductDefaultValues: ItemProduct = {
   id: 0,
   name: "",
   color: "",
-  productType: "",
+  gender: "",
   brand: "",
   existingQuantity: [],
   picture: "",
   description: "",
   price: 0,
   amount: 0,
-  size:"",
+  size: "",
 };
 
 const ItemDetailContainer = () => {
@@ -34,14 +34,8 @@ const ItemDetailContainer = () => {
     let url: string = `http://localhost:7070/jdshop/products/id/${productId}`;
 
     const getProducts = async (): Promise<ItemProduct> => {
-      const res =  await fetch(url, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2MzgyMDYyNzEsImV4cCI6MTYzODI5MjY3MX0.l-V6qKIcRAuEGxvTTbGgXc1lPD_eRwl7XUItKvz9YywuIfIW8Tj_w7r2SRM3Hwnn5yvAuVlRl32TucuNaSnOXg",
-        },
-      }).then((res) => res.json());
+      const res = await fetch(url).then((res) => res.json());
 
-      
       return res;
     };
 
@@ -49,14 +43,12 @@ const ItemDetailContainer = () => {
       setLoading(false);
       setItem(res);
     });
-
-    
   }, [productId]);
 
   return (
     <div>
       <NavigateBar />
-      <ImageHero sectionImage=""/>
+      <ImageHero sectionImage="" />
       <Box minHeight="70vh">
         {loading === true ? <Spinner /> : <ItemDetail item={item} />}
       </Box>

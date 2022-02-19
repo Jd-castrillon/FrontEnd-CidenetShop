@@ -1,21 +1,19 @@
-import React from "react";
-
+import React from 'react'
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
-
 interface Props {
-  handleCloseOutOfStockMessage: () => void;
-  openOutOfStockMessage: boolean;
-}
+    handleCloseOutOfStockMessage: () => void;
+    openOutOfStockMessage: boolean;
+  }
 
-const OutOfStockMessage: React.FC<Props> = ({ handleCloseOutOfStockMessage, openOutOfStockMessage }: Props) => {
+const UpdateStock: React.FC<Props> = ({ handleCloseOutOfStockMessage, openOutOfStockMessage }: Props) => {
   return (
     <div>
-      <Dialog open={openOutOfStockMessage} onClose={handleCloseOutOfStockMessage}>
+        <Dialog open={openOutOfStockMessage} onClose={handleCloseOutOfStockMessage}>
         <DialogTitle>⚠️ Hemos tenido un inconveniente</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -27,7 +25,7 @@ const OutOfStockMessage: React.FC<Props> = ({ handleCloseOutOfStockMessage, open
         </DialogActions>
       </Dialog>
     </div>
-  );
-};
+  )
+}
 
-export default OutOfStockMessage;
+export default UpdateStock

@@ -10,6 +10,8 @@ import CarouselRaking from "../components/carousel/CarouselRaking";
 import TextField from "@mui/material/TextField";
 import NavigateBar from "../components/header/NavigateBar";
 
+import { getProducts } from "../service/GetProducts";
+
 const ItemListContainer = () => {
   const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
   const [itemsFilter, setItemsFilter] = useState([] as ItemProduct[]);
@@ -18,26 +20,36 @@ const ItemListContainer = () => {
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    setItemsFilter([])
-    setSearch("")
+    const ac = new AbortController();
+    setItemsFilter([]);
+    setSearch("");
     let url: string = `http://localhost:7070/jdshop/products/${productType}`;
 
-    const getProducts = async (): Promise<ItemProduct[]> => {
-      const res = await await fetch(url, {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE2MzgyMDYyNzEsImV4cCI6MTYzODI5MjY3MX0.l-V6qKIcRAuEGxvTTbGgXc1lPD_eRwl7XUItKvz9YywuIfIW8Tj_w7r2SRM3Hwnn5yvAuVlRl32TucuNaSnOXg",
-        },
-      }).then((res) => res.json());
+    // const getProducts = async (): Promise<ItemProduct[]> => {
+    //   const res = await await fetch(url, {
 
-      return res;
+    //   }).then((res) => res.json());
+
+    //   return res;
+    // };
+
+    const getListProducts = async () => {
+      const products = getProducts(url);
+
+      if (productType) {
+        //  getProducts().then((res) => setItemProduct(res));
+        setItemProduct(await products);
+      } else {
+        // getProducts().then((res) => setItemProduct(res));
+        setItemProduct(await products);
+      }
     };
 
-    if (productType) {
-      getProducts().then((res) => setItemProduct(res));
-    } else {
-      getProducts().then((res) => setItemProduct(res));
-    }
+    getListProducts();
+
+    return () => ac.abort(); // Abort both fetches on unmount
+
+
   }, [productType]);
 
   const hanledChange = (e: any) => {
