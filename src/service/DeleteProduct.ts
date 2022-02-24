@@ -1,0 +1,15 @@
+import { ItemProduct } from "../types/ItemProduct"
+
+export const DeleteProduct = async (item: ItemProduct, token: string) => {
+    const url = `http://localhost:7070/jdshop/products/${item.id}`
+    const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+
+            Authorization: `Bearer ${token}`,
+        }
+
+    }).then((results) => results.json());
+
+    return response
+}

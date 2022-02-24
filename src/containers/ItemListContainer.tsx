@@ -25,22 +25,12 @@ const ItemListContainer = () => {
     setSearch("");
     let url: string = `http://localhost:7070/jdshop/products/${productType}`;
 
-    // const getProducts = async (): Promise<ItemProduct[]> => {
-    //   const res = await await fetch(url, {
-
-    //   }).then((res) => res.json());
-
-    //   return res;
-    // };
-
     const getListProducts = async () => {
       const products = getProducts(url);
 
       if (productType) {
-        //  getProducts().then((res) => setItemProduct(res));
         setItemProduct(await products);
       } else {
-        // getProducts().then((res) => setItemProduct(res));
         setItemProduct(await products);
       }
     };
@@ -48,8 +38,6 @@ const ItemListContainer = () => {
     getListProducts();
 
     return () => ac.abort(); // Abort both fetches on unmount
-
-
   }, [productType]);
 
   const hanledChange = (e: any) => {

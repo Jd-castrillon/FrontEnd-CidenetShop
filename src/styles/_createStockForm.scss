@@ -1,0 +1,20 @@
+.createStockForm{
+    .container{
+        display: flex;
+        flex-direction:row ;
+        justify-content: baseline;
+    }
+
+    .select{
+
+    }
+
+    padding: 1rem;
+}
+.createStockForm-container{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}

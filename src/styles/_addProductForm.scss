@@ -1,17 +1,13 @@
-.addProduct{
-    &__input{
-        margin-top: 2.5rem;
-    }
-}
+
 .addProduct-container{
     display: flex;
-    
     height: 100%;
 }
 .container-left{
     display: flex;
     flex-direction: column;
-    padding-right: 1rem;
+    padding-right: 1.5rem;
+    padding-top: 1.7rem;
     
 }
 .container-right{
@@ -19,6 +15,8 @@
     flex-direction: column;
 }
 .addProduct-btn{
-    padding-top: 5.5rem;
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
