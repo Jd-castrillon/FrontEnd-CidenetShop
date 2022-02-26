@@ -34,7 +34,7 @@ interface Props {
 }
 
 const AddProduct: FC<Props> = ({ handleClose, open }: Props) => {
-  const { userOnline } = React.useContext(AuthContext);
+  const { getToken } = React.useContext(AuthContext);
 
   const [showSpinner, setShowSpinner] = useState(false);
 
@@ -141,7 +141,7 @@ const AddProduct: FC<Props> = ({ handleClose, open }: Props) => {
                   fetch("http://localhost:7070/jdshop/products", {
                     method: "POST",
                     headers: {
-                      Authorization: `Bearer ${userOnline[0].token}`,
+                      Authorization: getToken(),
                     },
                     body: formData,
                   })

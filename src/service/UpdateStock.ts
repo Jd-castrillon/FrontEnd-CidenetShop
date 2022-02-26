@@ -15,7 +15,7 @@ const UpdateStock = async (idProduct: number, shortText: string, quantity: any, 
         headers: {
              "Content-Type": "application/json",
             'Accept': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
         },
         body: JSON.stringify(newExistingQuantity)
     }).then((results) => results.json())

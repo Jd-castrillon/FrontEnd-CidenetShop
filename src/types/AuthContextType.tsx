@@ -1,13 +1,10 @@
-import { AuthUserType } from "./AuthUserType";
 export type AuthContextType = {
-  userOnline: AuthUserType[];
-  adminOnline: AuthUserType[];
-  addUserOnline: (user:AuthUserType) => void;
-  addAdminOnline: (user:AuthUserType) => void;
-  removeUserOnline: () => void;
-  isOnline: () => number;
-  isAdmin : () => boolean;
-  
+  getToken: () => string;
+  logIn: () => void;
+
+  logOut: () => void;
+  isLogged: () => boolean;
+  isAdmin: () => boolean;
 };
 
 export type UserInformation = {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {  existingQuantity } from "../../types/ItemProduct";
+import { existingQuantity } from "../../types/ItemProduct";
 import { ItemAdminProduct } from "../../types/ItemAdminProduct";
 import { newExistingQuantity } from "../../types/NewExtingQuantity";
 import GetStock from "../../service/GetStock";
@@ -22,7 +22,7 @@ interface Props {
 }
 
 const StockProduct = ({ product }: Props) => {
-  const { userOnline } = React.useContext(AuthContext);
+  const { getToken } = React.useContext(AuthContext);
   const [stock, setStock] = useState([] as existingQuantity[]);
 
   const [showSpinner, setShowSpinner] = useState(false);
@@ -51,19 +51,19 @@ const StockProduct = ({ product }: Props) => {
   useEffect(() => {
     const ac = new AbortController();
     const getStock = async () => {
-      const response = GetStock(product.id, userOnline[0].token);
+      const response = GetStock(product.id, getToken());
       setStock(await response);
     };
 
     getStock();
     return () => ac.abort(); // Abort both fetches on unmount
-  }, [product, userOnline, isUpdate, isArrayUpdate]);
+  }, [product, isUpdate, isArrayUpdate, getToken]);
 
   const handleDelete = async (shortText: string) => {
     setIsUpdate(true);
     deleted();
     setTimeout(() => {
-      DeleteStock(product.id, shortText, userOnline[0].token);
+      DeleteStock(product.id, shortText, getToken());
       setIsUpdate(false);
     }, 100);
   };
@@ -121,7 +121,7 @@ const StockProduct = ({ product }: Props) => {
                   values.idProduct,
                   values.shortText,
                   values.quantity,
-                  userOnline[0].token
+                  getToken()
                 );
 
                 response.then(async (res) => {
@@ -163,7 +163,7 @@ const StockProduct = ({ product }: Props) => {
                   values.idProduct,
                   values.shortText,
                   values.quantity,
-                  userOnline[0].token
+                  getToken()
                 );
                 values.quantity = 0;
 
@@ -229,7 +229,6 @@ const StockProduct = ({ product }: Props) => {
                         {" "}
                         <DeleteOutlineOutlinedIcon
                           onClick={() => handleDelete(stock.sizeShortText)}
-                          
                         />
                       </TableCell>
                     </TableRow>

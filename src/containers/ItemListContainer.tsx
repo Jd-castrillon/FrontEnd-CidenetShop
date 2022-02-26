@@ -12,6 +12,7 @@ import NavigateBar from "../components/header/NavigateBar";
 
 import GetActiveProducts from "../service/GetActiveProducts";
 
+
 const ItemListContainer = () => {
   const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
   const [itemsFilter, setItemsFilter] = useState([] as ItemProduct[]);
@@ -69,7 +70,7 @@ const ItemListContainer = () => {
     <div className="section-products__wrapper-products">
       <NavigateBar />
       <ImageHero sectionImage={sectionImage} />
-
+       
       <CarouselRaking />
       <div className="section-products__wrapper-input" id="section">
         <TextField

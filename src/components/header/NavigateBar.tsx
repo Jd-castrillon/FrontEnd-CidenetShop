@@ -4,7 +4,7 @@ import IconsSesion from "./IconsSesion";
 import IconCidenet from "../layout/IconCidenet";
 import Badge from "@material-ui/core/Badge";
 import { CartContext } from "../../context/CartProvider";
-import SearchIcon from "@mui/icons-material/Search";
+
 
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
@@ -19,25 +19,21 @@ const NavigateBar = () => {
         <div className="header__wrapper-burgger-menu flex flex-jc-sb">
           <div style={{ height: "10px" }}>
             <IconsSesion></IconsSesion>
-
-            <a href="#section" style={{textDecoration:"none" }}>
-              <SearchIcon sx={{ color:"white" }} />
-            </a>
           </div>
         </div>
 
         <div className="header__iconCidenet">
-          <Link to="/">
             <button type="button">
+          <Link to="/">
               <IconCidenet />
-            </button>
           </Link>
+            </button>
         </div>
 
         <div className="flex flex-jc-sb header__wrapper-buttons">
           <Link to="/">
             <button className="header__buttons" type="button">
-              Home
+              Inicio
             </button>
           </Link>
           <Link to="/type/masculino">

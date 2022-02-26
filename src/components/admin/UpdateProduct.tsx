@@ -31,7 +31,7 @@ interface Props {
 }
 
 const UpdateProduct: FC<Props> = ({ handleClose, open, item }: Props) => {
-  const { userOnline } = React.useContext(AuthContext);
+  const { getToken } = React.useContext(AuthContext);
 
   const digitsOnly = (value: any) => /^\d+$/.test(value);
 
@@ -127,7 +127,7 @@ const UpdateProduct: FC<Props> = ({ handleClose, open, item }: Props) => {
               fetch(`http://localhost:7070/jdshop/products/${item.id}`, {
                 method: "PUT",
                 headers: {
-                  Authorization: `Bearer ${userOnline[0].token}`,
+                  Authorization: getToken(),
                 },
                 body: formData,
               })

@@ -18,9 +18,9 @@ import TableCart from "./TableCart";
 import NavigateBar from "../header/NavigateBar";
 
 const Cart = () => {
-  const { cartItem, resetAmountCart, updateStockInCart } =
+  const { getCart, resetAmountCart, updateStockInCart } =
     useContext(CartContext);
-  const { userOnline } = useContext(AuthContext);
+  const { getToken  , isLogged } = useContext(AuthContext);
   const [setShowForm, setSetShowForm] = useState(false);
   const [orderOk, setOrderOk] = useState(false);
   const [orderBad, setOrderBad] = useState(false);
@@ -44,7 +44,7 @@ const Cart = () => {
   };
 
   if (
-    cartItem.length === 0 &&
+    getCart().length === 0 &&
     !orderOk &&
     !orderBad &&
     !outOfStockMessage &&
@@ -61,7 +61,7 @@ const Cart = () => {
   order.orderDetails = orderDetails;
 
   const handleClickOpen = async () => {
-    if (userOnline.length > 0) {
+    if (isLogged()) {
       setSetShowForm(true);
     } else {
       navigate("/login");
@@ -80,7 +80,7 @@ const Cart = () => {
     setSpinner(true);
     const queryOutOfStock = await QueryOutOfStock(
       orderDetails,
-      userOnline[0].token
+      getToken()
     );
     if(queryOutOfStock.message === "Don't found ExistingQuantity"){
       resetAmountCart();
@@ -102,7 +102,7 @@ const Cart = () => {
       setSetShowForm(false);
       return setOutOfStockMessage(true);
     }
-    const response = await PostCreateOrder(order, userOnline[0].token);
+    const response = await PostCreateOrder(order, getToken());
 
     if (response.message !== "Orden guardada") {
       setSpinner(false);

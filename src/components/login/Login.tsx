@@ -6,7 +6,7 @@ import { CartContext } from "../../context/CartProvider";
 
 import { Link } from "react-router-dom";
 // styles
-import { Alert } from "@mui/material";
+
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -14,6 +14,8 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+
+import toast, { Toaster } from "react-hot-toast";
 
 import Typography from "@mui/material/Typography";
 
@@ -24,12 +26,11 @@ const Login = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const { userOnline, addUserOnline, isAdmin } = React.useContext(AuthContext);
-  const { cartItem } = React.useContext(CartContext);
+  const { logIn, isAdmin, isLogged } = React.useContext(AuthContext);
+  const { getCart } = React.useContext(CartContext);
 
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(false);
 
   let error = false;
 
@@ -38,26 +39,37 @@ const Login = () => {
 
     try {
       const user = await login(userName, password);
-      
-      addUserOnline(user);
+      console.table(user)
+      if (user.token && user.userName && user.authorities) {
+        await localStorage.setItem("AuthUser", JSON.stringify(user));
+        
+      }
 
-      if (userOnline.length > 0 && cartItem.length > 0) {
+
+      await logIn();
+
+      if (isLogged() && getCart().length > 0) {
         navigate("/cart");
-      } else if (userOnline.length > 0 && !isAdmin()) {
+      } else if (isLogged() && !isAdmin()) {
         navigate("/");
-      } else if (userOnline.length > 0 ) {
+      } else if (isLogged()) {
         navigate(state?.path || "/");
-      } else{
-        setMessage(true);
+      } else {
+        errorLogin();
       }
     } catch (error) {
+      errorLogin();
       console.log(error);
       console.log("Ha ocurrido un error");
     }
   };
 
+  const errorLogin = () =>
+    toast.error("No se ha podido iniciar sesión, intentalo nuevamente");
+
   return (
     <div className="login__image">
+      <Toaster position="top-left" />
       <NavigateBar />
       <div className="login__main">
         <Grid
@@ -88,15 +100,10 @@ const Login = () => {
               }}
             >
               <div className="login__iconCidenet"></div>
-              {message ? (
-                <Alert severity="error">
-                  Ha ocurrido un error, intentalo nuevamente!
-                </Alert>
-              ) : (
-                <Typography component="h1" variant="h5">
-                  Bienvenido a Cidenet Shop
-                </Typography>
-              )}
+
+              <Typography component="h1" variant="h5">
+                Bienvenido a Cidenet Shop
+              </Typography>
 
               <Box component="form" onSubmit={submit}>
                 <TextField

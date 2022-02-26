@@ -7,11 +7,11 @@ const AddToOrder = () => {
 
     const listOrderDetails: OrderDetails[] = [];
 
-    const { cartItem } =
+    const { getCart } =
         React.useContext(CartContext);
 
     const addToOrder = () =>
-        cartItem.forEach((item) => {
+        getCart().forEach((item) => {
             const orderDetail: OrderDetails = { idProduct: 0, size: "", quantity: 0 };
             orderDetail.idProduct = item.id;
             orderDetail.size = item.size;

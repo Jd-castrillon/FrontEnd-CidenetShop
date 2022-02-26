@@ -8,12 +8,15 @@ import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import { findFirstSize } from "../../service/findFirstSize";
+import { useNavigate } from "react-router-dom";
+
 
 interface Props {
   item: ItemProduct;
 }
 
 const ItemDetail = ({ item }: Props) => {
+  const navigate = useNavigate();
   const [count, setCount] = useState(1);
   const [selectCount, setSelectCount] = useState(false);
   const { addItemToCart } = useContext(CartContext);
@@ -28,6 +31,7 @@ const ItemDetail = ({ item }: Props) => {
   }, [item]);
 
   const handleClickBuy = () => {
+      navigate(`/item/${item.id}`)
     if (count > 0) {
       setSelectCount(true);
       addItemToCart({

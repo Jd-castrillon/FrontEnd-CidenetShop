@@ -10,24 +10,21 @@ import { useNavigate } from "react-router-dom";
 const IconsSesion = () => {
   const navigate = useNavigate();
 
-  const { userOnline, removeUserOnline } = useContext(AuthContext);
+  const { isLogged, logOut, isAdmin } = useContext(AuthContext);
 
-  const logOut = () => {
-    removeUserOnline();
+  const logOutFunction = () => {
+    
+    logOut();
     navigate("/");
   };
 
-  if (userOnline.length > 0) {
-    if (
-      userOnline[0].authorities.find(
-        (authority) => authority.authority === "admin"
-      )
-    ) {
+  if (isLogged()) {
+    if (isAdmin()) {
       return (
         <div className="flex flex-jc-sb">
           <div>
             <button
-              onClick={logOut}
+              onClick={logOutFunction}
               type="button"
               style={{
                 display: "flex",
@@ -45,7 +42,7 @@ const IconsSesion = () => {
     } else {
       return (
         <div>
-          <button onClick={logOut} type="button">
+          <button onClick={logOutFunction} type="button">
             <LogoutIcon style={{ paddingLeft: "1rem", color: "white" }} />
           </button>
         </div>

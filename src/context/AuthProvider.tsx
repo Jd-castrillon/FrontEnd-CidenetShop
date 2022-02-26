@@ -4,12 +4,11 @@ import { AuthContextType } from "../types/AuthContextType";
 import { AuthUserType } from "../types/AuthUserType";
 
 const contextDefaultValues: AuthContextType = {
-  userOnline: [],
-  adminOnline: [],
-  addUserOnline: () => {},
-  addAdminOnline: () => {},
-  removeUserOnline: () => {},
-  isOnline: () => 0,
+  
+  getToken: () => "",
+  logIn: () => {},
+  logOut: () => {},
+  isLogged: () => false,
   isAdmin: () => false,
 };
 
@@ -17,62 +16,65 @@ export const AuthContext =
   React.createContext<AuthContextType>(contextDefaultValues);
 
 const AuthProvider: FC = ({ children }) => {
-  const userOnline: AuthUserType[] = [];
-  const adminOnline: AuthUserType[] = [];
+  
 
-  const addAdminOnline = (admin: AuthUserType) => {
-    if (admin.token !== undefined && admin !== null) {
-      if (adminOnline.length > 0) {
-        userOnline.pop();
-        adminOnline.pop();
-        adminOnline.push(admin);
-      } else {
-        adminOnline.push(admin);
-      }
+  const logIn = () => {
+    const auth = localStorage.getItem("AuthUser");
+    if (auth !== null && auth !== undefined) {
+      const userAuth: AuthUserType = JSON.parse(auth.toString());
+      console.table(userAuth);
+     
     }
   };
 
-  const addUserOnline = (user: AuthUserType) => {
-    if (user.token !== undefined && user !== null) {
-      if (userOnline.length > 0) {
-        userOnline.pop();
-        userOnline.push(user);
-      } else {
-        userOnline.push(user);
-      }
+  const logOut = () => {
+    const auth = localStorage.getItem("AuthUser");
+    if (auth !== null && auth !== undefined) {
+      localStorage.removeItem("AuthUser");
+      
     }
   };
 
-  const removeUserOnline = () => {
-    userOnline.pop();
+  const getToken = () => {
+    const auth = localStorage.getItem("AuthUser");
+    if (auth !== null && auth !== undefined) {
+      const user: AuthUserType = JSON.parse(auth);
+      return `Bearer ${user.token}`;
+    }
+    return "";
   };
 
-  const isOnline = () => {
-    return userOnline.length;
-  };
-
-  const isAdmin = () => {
-    if (
-      userOnline.length > 0 &&
-      userOnline[0].authorities.find(
-        (authority) => authority.authority === "admin"
-      )
-    ) {
+  const isLogged = () => {
+    const auth = localStorage.getItem("AuthUser");
+    if (auth !== null && auth !== undefined) {
       return true;
     }
     return false;
-    //return true;
+  };
+
+  const isAdmin = () => {
+    const auth = localStorage.getItem("AuthUser");
+    if (auth !== null && auth !== undefined) {
+      const user: AuthUserType = JSON.parse(auth);
+      if (
+        user &&
+        user.authorities.find((authority) => authority.authority === "admin")
+      ) {
+        return true;
+      }
+    }
+
+    return false;
   };
 
   return (
     <AuthContext.Provider
       value={{
-        adminOnline,
-        addAdminOnline,
-        userOnline,
-        addUserOnline,
-        removeUserOnline,
-        isOnline,
+        logIn,
+        getToken,
+        logOut,
+
+        isLogged,
         isAdmin,
       }}
     >

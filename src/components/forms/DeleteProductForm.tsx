@@ -21,7 +21,7 @@ const DeleteProductsForm: FC<Props> = ({ handleClose, open, item }: Props) => {
   let urlImage: string = `data:image/JPG;base64,${item.picture}`;
   const navigate = useNavigate();
 
-  const { userOnline } = React.useContext(AuthContext);
+  const { getToken } = React.useContext(AuthContext);
   const [showSpinner, setShowSpinner] = useState(false);
   const notify = () => toast.error("El producto todavía tiene stock.");
   const error = () => toast.error("Algo ha salido mal");
@@ -29,7 +29,7 @@ const DeleteProductsForm: FC<Props> = ({ handleClose, open, item }: Props) => {
     toast.success(`Se ha eliminado el producto ${name}`);
 
   const deleteProduct = async () => {
-    const response = await DeleteProduct(item, userOnline[0].token);
+    const response = await DeleteProduct(item, getToken());
     if (response.message === "Product was delete") {
       navigate("/admin");
       success(item.name);
@@ -38,7 +38,7 @@ const DeleteProductsForm: FC<Props> = ({ handleClose, open, item }: Props) => {
         setShowSpinner(false);
         handleClose();
       }, 1000);
-      console.log(`Se elimino el producto ${item.name} ${item.id}`);
+      
     } else if (response.message === "Don't delete product with stock") {
       notify();
     } else {

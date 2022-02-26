@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -7,12 +7,11 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 
-import { Alert } from "@mui/material";
 import { Grid } from "@mui/material";
 
 import { MenuItem } from "@mui/material";
 
-
+import toast, { Toaster } from "react-hot-toast";
 import * as Yup from "yup";
 import NavigateBar from "../header/NavigateBar";
 
@@ -33,16 +32,16 @@ interface newUser {
 }
 
 const Resgister = () => {
-  const [message, setMessage] = useState(false);
-  
-  const digitsOnly = (value:any) => /^\d+$/.test(value)
+  const digitsOnly = (value: any) => /^\d+$/.test(value);
 
   const RegisterSchema = Yup.object().shape({
     documentNumber: Yup.string()
-    .test('Digits only', 'Solo digitar números', digitsOnly)
-      .min(5, "demasiado corto")
-      .required("requiere documento"),
-    name: Yup.string().required("El nombre es requerido"),
+      .required("requiere documento")
+      .test("Digits only", "Solo digitar números", digitsOnly)
+      .min(5, "demasiado corto"),
+    name: Yup.string()
+      .required("El nombre es requerido")
+      .matches(/^[aA-zZ\s]+$/, "No caractares especiales"),
     email: Yup.string()
       .email("Direccion de correo inválida")
       .required("El email es requerido"),
@@ -55,14 +54,17 @@ const Resgister = () => {
       .oneOf([Yup.ref("password"), null], "las contraseñas no coinciden"),
   });
 
+  const errorMessage = () =>
+    toast.error("No hemos podido registrarte, verifica los datos.");
+  const errorEmail = () =>
+    toast.error("Ese correo ya tiene una cuenta con nosotros.");
+
   const navigate = useNavigate();
 
   return (
     <div className="register_wrapper">
+      <Toaster />
       <NavigateBar />
-      {message ? (
-        <Alert severity="error">Ha ocurrido un error, intentalo nuevamente!</Alert>
-      ) : null}
       <Formik<FormModel>
         initialValues={{
           documentType: "cedula de ciudadania",
@@ -83,7 +85,7 @@ const Resgister = () => {
               email: values.email,
               password: values.password,
             };
-            console.log(user);
+
             fetch("http://localhost:7070/jdshop/auth/newuser", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -93,33 +95,33 @@ const Resgister = () => {
               .then((data) => {
                 if (data.message === "usuario guardado") {
                   navigate("/login");
+                } else if (data.message === "That email already exists") {
+                  errorEmail();
                 } else {
-                  setMessage(true);
+                  errorMessage();
                 }
               });
           }, 2000);
         }}
         component={RegistrationForm}
-        
       />
     </div>
   );
 };
 
-let RegistrationForm: (props: FormikProps<FormModel> ) => JSX.Element = ({
+let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
   handleSubmit,
   values,
   handleChange,
   errors,
   touched,
- 
 }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-ai-e register__cualquiercosa">
         <div className="register__form">
           <div className="register__iconCidenet"></div>
-          
+
           <div className="flex   register__main">
             {/* primera columna */}
             <div className="register__column">
@@ -128,7 +130,6 @@ let RegistrationForm: (props: FormikProps<FormModel> ) => JSX.Element = ({
                   id="documentType"
                   name="documentType"
                   value={values.documentType}
-                  
                   onChange={handleChange}
                 >
                   <MenuItem value="cedula de ciudadania">
@@ -140,8 +141,10 @@ let RegistrationForm: (props: FormikProps<FormModel> ) => JSX.Element = ({
                 </Select>
               </div>
               <div className="register__input">
-                {errors.name &&  touched.name ? (
-                  <div style={{ color: "red", paddingBottom:"0.3rem" }}>{errors.name}</div>
+                {errors.name && touched.name ? (
+                  <div style={{ color: "red", paddingBottom: "0.3rem" }}>
+                    {errors.name}
+                  </div>
                 ) : null}
                 <TextField
                   type="text"

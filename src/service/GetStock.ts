@@ -7,7 +7,7 @@ const GetStock = async (idProduct: number, token: string): Promise<existingQuant
     const response = await fetch(url, {
         method: "GET",
         headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
         }
     }).then((results) => results.json())
 

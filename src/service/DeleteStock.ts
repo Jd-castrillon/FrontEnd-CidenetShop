@@ -15,7 +15,7 @@ const DeleteStock = async (idProduct: number, shortText: string, token: string) 
         headers: {
             "Content-Type": "application/json",
             'Accept': 'application/json',
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
         },
         body: JSON.stringify(deleteStock)
     }).then((results) => results.json())

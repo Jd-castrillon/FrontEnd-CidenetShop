@@ -1,9 +1,11 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 
 import { ItemProduct, OrderDetails } from "../types/ItemProduct";
 import { CartContextType } from "../types/CartContextType";
 
 const contextDefaultValues: CartContextType = {
+  getCart: () => [],
+  setCart: () => {},
   cartItem: [],
   addItemToCart: () => {},
   deleteProduct: () => {},
@@ -18,30 +20,43 @@ export const CartContext =
   React.createContext<CartContextType>(contextDefaultValues);
 
 const CartProvider: FC = ({ children }) => {
-  const [cartItem, setCartItem] = useState([] as ItemProduct[]);
+  const cartItem: ItemProduct[] = [];
+
+  const getCart = () => {
+    const car = localStorage.getItem("Car");
+    if (car !== null && car !== undefined) {
+      const carProducts: ItemProduct[] = JSON.parse(car);
+      if (carProducts !== undefined && carProducts !== null) return carProducts;
+    }
+    return [];
+  };
+
+  const setCart = (itemList: ItemProduct[]) => {
+    localStorage.setItem("Car", JSON.stringify(itemList));
+  };
 
   const addItemToCart = (itemCount: ItemProduct) => {
     if (
-      cartItem.find(
+      getCart().find(
         (item) => item.id === itemCount.id && item.size === itemCount.size
       )
     ) {
-      const newCartItem = cartItem.map((item) => {
+      const newCartItem = getCart().map((item) => {
         if (item.id === itemCount.id && item.size === itemCount.size) {
           return { ...item, amount: itemCount.amount };
         }
         return item;
       });
-      setCartItem(newCartItem);
+      setCart(newCartItem);
     } else {
-      setCartItem((state) => {
-        return [...state, itemCount];
-      });
+      const newListCart = getCart();
+      newListCart.push(itemCount);
+      setCart(newListCart);
     }
   };
 
   const updateStockInCart = (orderDetails: OrderDetails) => {
-    const item = cartItem.find(
+    const item = getCart().find(
       (item) =>
         item.id === orderDetails.idProduct && item.size === orderDetails.size
     );
@@ -53,21 +68,21 @@ const CartProvider: FC = ({ children }) => {
   };
 
   const deleteProduct = (itemCount: ItemProduct) => {
-    const newItems = cartItem.filter(
+    const newItems = getCart().filter(
       (item) => item.id !== itemCount.id || item.size !== itemCount.size
     );
-    setCartItem(newItems);
+    setCart(newItems);
   };
 
   const deleteByOutOfStock = (idProduct: number, size: string) => {
-    const newItems = cartItem.filter(
+    const newItems = getCart().filter(
       (item) => item.id !== idProduct || item.size !== size
     );
-    setCartItem(newItems);
+    setCart(newItems);
   };
 
   const totalCost = () => {
-    const cost = cartItem.reduce(
+    const cost = getCart().reduce(
       (accumulator, item) => accumulator + item.price * item.amount,
       0
     );
@@ -75,16 +90,25 @@ const CartProvider: FC = ({ children }) => {
   };
 
   const totalAmount = () => {
-    return cartItem.length;
+    const car = localStorage.getItem("Car");
+    if (car !== null && car !== undefined) {
+      const carProducts: ItemProduct[] = JSON.parse(car);
+      if (carProducts !== undefined && carProducts !== null)
+        return carProducts.length;
+    }
+
+    return 0;
   };
 
   const resetAmountCart = () => {
-    setCartItem([]);
+    localStorage.removeItem("Car");
   };
 
   return (
     <CartContext.Provider
       value={{
+        getCart,
+        setCart,
         cartItem,
         addItemToCart,
         deleteProduct,

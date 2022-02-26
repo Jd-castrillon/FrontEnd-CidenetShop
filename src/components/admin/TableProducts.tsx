@@ -36,7 +36,7 @@ const TableProducts = () => {
   const [filterChange, setFilterChange] = useState("");
   const [genderChange, setGenderChange] = useState("");
 
-  const { userOnline } = React.useContext(AuthContext);
+  const { getToken } = React.useContext(AuthContext);
 
   const [item, setItem] = useState<ItemAdminProduct>();
   const classes = useStyles();
@@ -54,14 +54,14 @@ const TableProducts = () => {
     let url: string = `http://localhost:7070/jdshop/products/${genderChange}`;
 
     const getListProducts = async () => {
-      const products = getProducts(url, userOnline[0].token);
-      console.table(await products);
+      const products = getProducts(url, getToken());
+      
       setItemProduct(await products);
     };
 
     getListProducts();
     return () => ac.abort(); // Abort both fetches on unmount
-  }, [showDeleteForm, genderChange, showUpdateForm, userOnline]);
+  }, [showDeleteForm, genderChange, showUpdateForm, getToken]);
 
   const handleCloseDeleteForm = () => {
     setShowDeleteForm(false);

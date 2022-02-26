@@ -7,7 +7,7 @@ export const DeleteProduct = async (item: ItemAdminProduct, token: string) => {
         method: "DELETE",
         headers: {
 
-            Authorization: `Bearer ${token}`,
+            Authorization: token,
         }
 
     }).then((results) => results.json());

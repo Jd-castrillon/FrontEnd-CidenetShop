@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { CartContext } from "../../context/CartProvider";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 import { Table, TableBody, TableCell } from "@material-ui/core";
 import { TableContainer, TableHead, TableRow } from "@material-ui/core";
 import { Paper, Box } from "@material-ui/core";
+import { ItemProduct } from "../../types/ItemProduct";
+
 
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import Buttons from "../buttons/Buttons";
 
 const useStyles = makeStyles({
@@ -24,14 +26,23 @@ interface Props {
 }
 
 const TableCart: React.FC<Props> = ({ setShowForm }) => {
-  const { cartItem, totalCost, deleteProduct } = React.useContext(CartContext);
-  
+  const { getCart, totalCost, deleteProduct } = React.useContext(CartContext);
+  const navigate = useNavigate();
+  const [listCart, setlistCart] = useState([] as ItemProduct[]);
+  const [isUpdate, setIsUpdate] = useState<number>(0);
+
+  const cart = localStorage.getItem('Car')
+
+  useEffect(() => {
+    setlistCart(getCart());
+  }, [cart,getCart,deleteProduct,isUpdate]);
 
   const classes = useStyles();
 
   return (
     <div>
-      <Paper className={classes.root} style={{ zIndex: 1 }}>
+     
+        <Paper className={classes.root} style={{ zIndex: 1 }}>
         <TableContainer>
           <Table className="" stickyHeader aria-label="sticky table">
             <TableHead style={{ zIndex: 0 }}>
@@ -53,10 +64,13 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {cartItem.map((item , index) => {
+              {listCart.map((item, index) => {
                 let urlImage: string = `data:image/JPG;base64,${item.picture}`;
                 const handleDelete = () => {
                   deleteProduct(item);
+                  navigate("/cart")
+                  setIsUpdate(isUpdate + 1);
+                  
                 };
                 return (
                   <TableRow key={index}>
@@ -65,7 +79,7 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
                         <img
                           src={urlImage}
                           alt="img"
-                          style={{ width: "82px" , borderRadius:"5%" }}
+                          style={{ width: "82px", borderRadius: "5%" }}
                         />
                       </Link>
                     </TableCell>
@@ -89,6 +103,8 @@ const TableCart: React.FC<Props> = ({ setShowForm }) => {
 
         <Buttons setShowForm={setShowForm} />
       </Paper>
+      
+      
     </div>
   );
 };
