@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 interface FormModel {
   name: string;
@@ -29,36 +29,6 @@ const UpdateProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
       <form onSubmit={handleSubmit}>
         <div className="updateProduct-container">
           <div className="container-left">
-            <div className="addProduct__input" style={{ paddingTop: "1.5rem" }}>
-              {errors.picture && touched.picture ? (
-                <div
-                  style={{
-                    color: "red",
-                    paddingBottom: "0.3rem",
-                    width: "13rem",
-                  }}
-                >
-                  {errors.picture}
-                </div>
-              ) : (
-                <div
-                  style={{
-                    color: "red",
-                    paddingBottom: "0.3rem",
-                    height: "0.9rem",
-                    width: "13rem",
-                  }}
-                ></div>
-              )}
-              <TextField
-                type="file"
-                id="picture"
-                name="picture"
-                onChange={(e: any) => {
-                  setFieldValue("picture", e.target.files[0]);
-                }}
-              >  </TextField> <AddPhotoAlternateIcon fontSize="large" color="primary"/>
-            </div>
             <div className="addProduct__input">
               <Select
                 id="gender"
@@ -228,6 +198,42 @@ const UpdateProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
                 onChange={handleChange}
                 label="Precio"
               ></TextField>
+              <div
+                className="addProduct__input"
+                style={{ paddingTop: "1.5rem" }}
+              >
+                {errors.picture && touched.picture ? (
+                  <div
+                    style={{
+                      color: "red",
+                      paddingBottom: "0.3rem",
+                      width: "13rem",
+                    }}
+                  >
+                    {errors.picture}
+                  </div>
+                ) : (
+                  <div
+                    style={{
+                      color: "red",
+                      paddingBottom: "0.3rem",
+                      height: "0.9rem",
+                      width: "13rem",
+                    }}
+                  ></div>
+                )}
+                <TextField
+                  type="file"
+                  id="picture"
+                  name="picture"
+                  onChange={(e: any) => {
+                    setFieldValue("picture", e.target.files[0]);
+                  }}
+                >
+                  {" "}
+                </TextField>{" "}
+                <AddPhotoAlternateIcon fontSize="large" color="primary" />
+              </div>
             </div>
 
             <div className="addProduct-btn">

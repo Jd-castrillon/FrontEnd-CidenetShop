@@ -1,11 +1,9 @@
 import React, { FC } from "react";
 
-
 import { AuthContextType } from "../types/AuthContextType";
 import { AuthUserType } from "../types/AuthUserType";
 
 const contextDefaultValues: AuthContextType = {
-
   userOnline: [],
   adminOnline: [],
   addUserOnline: () => {},
@@ -34,9 +32,6 @@ const AuthProvider: FC = ({ children }) => {
     }
   };
 
-
-
-
   const addUserOnline = (user: AuthUserType) => {
     if (user.token !== undefined && user !== null) {
       if (userOnline.length > 0) {
@@ -53,18 +48,19 @@ const AuthProvider: FC = ({ children }) => {
   };
 
   const isOnline = () => {
-    console.log(userOnline.length);
     return userOnline.length;
   };
 
   const isAdmin = () => {
-    console.log("Verificando si es un admin");
-    if (userOnline.length > 0 &&  userOnline[0].authorities.find(
-      (authority) => authority.authority === "admin")) {
-      
+    if (
+      userOnline.length > 0 &&
+      userOnline[0].authorities.find(
+        (authority) => authority.authority === "admin"
+      )
+    ) {
       return true;
     }
-     return false
+    return false;
     //return true;
   };
 

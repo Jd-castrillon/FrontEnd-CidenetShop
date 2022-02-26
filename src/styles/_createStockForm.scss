@@ -1,4 +1,10 @@
 .createStockForm{
+
+    h4{
+        
+        display: flex;
+        justify-content: center;
+    }
     .container{
         display: flex;
         flex-direction:row ;
@@ -6,15 +12,23 @@
     }
 
     .select{
+        margin-bottom: 1.4rem;
+        margin-top: 1rem;
+        width: 13rem;
+    }
 
+    .input{
+        margin-bottom: 2.8rem;
     }
 
     padding: 1rem;
 }
 .createStockForm-container{
+
+    height: 15rem;
     margin-top: 1rem;
     display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }

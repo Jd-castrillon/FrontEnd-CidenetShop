@@ -38,8 +38,7 @@ const Login = () => {
 
     try {
       const user = await login(userName, password);
-      console.log(user);
-
+      
       addUserOnline(user);
 
       if (userOnline.length > 0 && cartItem.length > 0) {

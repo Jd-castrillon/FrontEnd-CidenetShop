@@ -25,14 +25,15 @@ const CreateStockForm: (
         <b>Agregar Talla</b>
       </h4>
       <form onSubmit={handleSubmit}>
-        <div className=" container">
-          <div>
+        <div className="createStockForm-container" >
+          <div className="select">
           <InputLabel id="shortText">Talla</InputLabel>
             <Select
               id="shortText"
               name="shortText"
               onChange={handleChange}
               value={values.shortText}
+              style={{width:"13rem"}}
             >
               <MenuItem value="XS">XS</MenuItem>
               <MenuItem value="S">S</MenuItem>
@@ -42,6 +43,26 @@ const CreateStockForm: (
             </Select>
           </div>
           <div>
+          {errors.quantity && touched.quantity ? (
+              <div
+                style={{
+                  color: "red",
+                  paddingBottom: "0.1rem",
+                  width: "10rem",
+                }}
+              >
+                {errors.quantity}
+              </div>
+            ) : (
+              <div
+                style={{
+                  color: "red",
+                  paddingBottom: "0.3rem",
+                  height: "0.9rem",
+                  width: "10rem",
+                }}
+              ></div>
+            )}
             <TextField
               type="text"
               id="quantity"
@@ -49,6 +70,7 @@ const CreateStockForm: (
               value={values.quantity}
               onChange={handleChange}
               label="cantidad"
+              className="input"
             ></TextField>
           </div>
           <Button type="submit">Crear</Button>

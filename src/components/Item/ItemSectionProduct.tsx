@@ -3,9 +3,9 @@ import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router";
 import Box from "@material-ui/core/Box";
+import { ItemProduct } from "../../types/ItemProduct";
 
 // Types
-import { ItemProduct } from "../../types/ItemProduct";
 
 type Props = {
   item: ItemProduct;

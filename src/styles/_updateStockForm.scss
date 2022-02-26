@@ -1,6 +1,26 @@
-.updateStockForm{
-    .container{
+.updateStockForm {
+    h4{
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
         display: flex;
-        flex-direction: row ;
+        justify-content: center;
     }
+    .select{
+        width: 13rem;
+        margin-bottom: 1.4rem;
+        margin-top: 1rem;
+    }
+
+    .input{
+        margin-bottom: 2.8rem;
+    }
+
+}
+.updateStockform-container {
+  height: 15rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }

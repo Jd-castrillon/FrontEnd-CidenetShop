@@ -3,11 +3,10 @@ import { GetRankingProducts } from "../../service/GetRakingProducts";
 import { ItemProduct } from "../../types/ItemProduct";
 
 import { ImageList } from "@material-ui/core";
-import { ImageListItem } from "@material-ui/core";
-import { ImageListItemBar } from "@material-ui/core";
 
 
-import { Link } from "react-router-dom";
+
+import ItemCarousel from "./ItemCarousel";
 // import Item from "../Item/Item";
 
 export const CarouselRaking = () => {
@@ -36,24 +35,7 @@ export const CarouselRaking = () => {
         gap={6}
       >
         {listItemRaking.map((item) => (
-          <ImageListItem
-            key={item.picture}
-            className="carousel__grid-list"
-            style={{ whiteSpace: "nowrap" }}
-          >
-            <img
-              src={`data:image/JPG;base64,${item.picture}`}
-              alt={item.name}
-              className="image.carousel"
-            />
-            <Link to={`/item/${item.id}`}>
-              <ImageListItemBar
-                className="item-list"
-                title={item.name}
-                
-              ></ImageListItemBar>
-            </Link>
-          </ImageListItem>
+          <ItemCarousel key={item.id} item={item} />
         ))}
       </ImageList>
     </div>

@@ -32,7 +32,7 @@ interface FormModel {
             <Select
               id="gender"
               name="gender"
-              
+              value={values.gender}
               onChange={handleChange}
               style={{ width: "13rem" }}
             >
@@ -45,7 +45,9 @@ interface FormModel {
               <div
                 style={{
                   color: "red",
-                  paddingBottom: "0.3rem",
+                  display:"flex",
+                  alignItems:"center",
+                  height: "2.35rem",
                   width: "13rem",
                 }}
               >
@@ -55,7 +57,7 @@ interface FormModel {
               <div
                 style={{
                   color: "red",
-                  paddingBottom: "0.3rem",
+                  
                   height: "2.35rem",
                   width: "13rem",
                 }}
@@ -140,7 +142,7 @@ interface FormModel {
                 style={{
                   color: "red",
                   paddingBottom: "0.3rem",
-                  width: "13rem",
+                  width: "16rem",
                 }}
               >
                 {errors.description}
@@ -151,7 +153,7 @@ interface FormModel {
                   color: "red",
                   paddingBottom: "0.3rem",
                   height: "1.35rem",
-                  width: "13rem",
+                  width: "16rem",
                 }}
               ></div>
             )}
@@ -167,13 +169,13 @@ interface FormModel {
               rows={5}
             ></TextField>
           </div>
-          <div className="addProduct__input" style={{ paddingTop: "0.3rem" }}>
+          <div className="addProduct__input" style={{ paddingTop: "0.1srem" }}>
             {errors.price && touched.price ? (
               <div
                 style={{
                   color: "red",
                   paddingBottom: "0.3rem",
-                  width: "13rem",
+                  width: "16rem",
                   paddingTop: "1.2rem",
                 }}
               >
@@ -185,7 +187,7 @@ interface FormModel {
                   color: "red",
                   paddingBottom: "0.3rem",
                   height: "2.35rem",
-                  width: "13rem",
+                  width: "16rem",
                 }}
               ></div>
             )}
@@ -198,12 +200,12 @@ interface FormModel {
               label="Precio"
             ></TextField>
           </div>
-          <div className="addProduct__input" style={{ paddingTop: "1.5rem" }}>
+          <div className="addProduct__input" style={{ paddingTop: "1.4rem" }}>
             {errors.picture && touched.picture ? (
               <div
                 style={{
                   color: "red",
-                  paddingBottom: "0.3rem",
+                  paddingBottom: "0.1rem",
                   width: "13rem",
                 }}
               >
@@ -229,7 +231,7 @@ interface FormModel {
             ></TextField>
           </div>
           <div className="addProduct-btn">
-            <Button type="submit">Agregar producto</Button>
+            <Button variant="contained" type="submit">Agregar producto</Button>
           </div>
         </div>
       </div>

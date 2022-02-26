@@ -7,13 +7,16 @@ import { Paper } from "@material-ui/core";
 import { getProducts } from "../../service/GetProducts";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
-
+import Box from "@mui/material/Box";
+import { AuthContext } from "../../context/AuthProvider";
 import DeleteProductsForm from "../forms/DeleteProductForm";
 import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
-import { ItemProduct } from "../../types/ItemProduct";
+import SearchIcon from "@mui/icons-material/Search";
+
+import { ItemAdminProduct } from "../../types/ItemAdminProduct";
 import UpdateProduct from "./UpdateProduct";
 
 const useStyles = makeStyles({
@@ -26,14 +29,16 @@ const useStyles = makeStyles({
 });
 
 const TableProducts = () => {
-  const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
+  const [itemProduct, setItemProduct] = useState([] as ItemAdminProduct[]);
   const [showDeleteForm, setShowDeleteForm] = useState(false);
   const [showUpdateForm, setShowUpdateForm] = useState(false);
-  const [itemsFilter, setItemsFilter] = useState([] as ItemProduct[]);
+  const [itemsFilter, setItemsFilter] = useState([] as ItemAdminProduct[]);
   const [filterChange, setFilterChange] = useState("");
   const [genderChange, setGenderChange] = useState("");
 
-  const [item, setItem] = useState<ItemProduct>();
+  const { userOnline } = React.useContext(AuthContext);
+
+  const [item, setItem] = useState<ItemAdminProduct>();
   const classes = useStyles();
 
   const handleSelectChange = (e: any) => {
@@ -49,25 +54,26 @@ const TableProducts = () => {
     let url: string = `http://localhost:7070/jdshop/products/${genderChange}`;
 
     const getListProducts = async () => {
-      const products = getProducts(url);
+      const products = getProducts(url, userOnline[0].token);
+      console.table(await products);
       setItemProduct(await products);
     };
 
     getListProducts();
     return () => ac.abort(); // Abort both fetches on unmount
-  }, [showDeleteForm, genderChange, showUpdateForm]);
+  }, [showDeleteForm, genderChange, showUpdateForm, userOnline]);
 
   const handleCloseDeleteForm = () => {
     setShowDeleteForm(false);
   };
-  const handleOpenDeleteForm = (open: boolean, item: ItemProduct) => {
+  const handleOpenDeleteForm = (open: boolean, item: ItemAdminProduct) => {
     setShowDeleteForm(open);
     setItem(item);
   };
   const handleCloseUpdateForm = () => {
     setShowUpdateForm(false);
   };
-  const handleOpenUpdateForm = (open: boolean, item: ItemProduct) => {
+  const handleOpenUpdateForm = (open: boolean, item: ItemAdminProduct) => {
     setShowUpdateForm(open);
     setItem(item);
   };
@@ -93,15 +99,20 @@ const TableProducts = () => {
   }
 
   const filter = (textFilter: string) => {
-    let items: ItemProduct[] = itemProduct.filter((item: ItemProduct) => {
-      if (
-        item.name.toString().toLowerCase().includes(textFilter.toLowerCase()) ||
-        item.color.toString().toLowerCase().includes(textFilter.toLowerCase())
-      ) {
-        return item;
+    let items: ItemAdminProduct[] = itemProduct.filter(
+      (item: ItemAdminProduct) => {
+        if (
+          item.name
+            .toString()
+            .toLowerCase()
+            .includes(textFilter.toLowerCase()) ||
+          item.color.toString().toLowerCase().includes(textFilter.toLowerCase())
+        ) {
+          return item;
+        }
+        return null;
       }
-      return null;
-    });
+    );
 
     setItemsFilter(items);
   };
@@ -113,23 +124,24 @@ const TableProducts = () => {
 
   return (
     <div>
-      <Paper className={classes.root} style={{ zIndex: 1 }}>
-        <div className="addProduct__input">
-          <Select
-            variant="standard"
-            id="gender"
-            name="gender"
-            label="Genero"
-            value={genderChange}
-            style={{ width: "13rem" }}
-            onChange={handleSelectChange}
-          >
-            <MenuItem value="">Ninguno</MenuItem>
-            <MenuItem value="masculino">Masculino</MenuItem>
-            <MenuItem value="femenino">Femenino</MenuItem>
-          </Select>
-        </div>
-        <div>
+      <div className="addProduct__input">
+        <Select
+          variant="standard"
+          id="gender"
+          name="gender"
+          label="Genero"
+          value={genderChange}
+          style={{ width: "13rem" }}
+          onChange={handleSelectChange}
+        >
+          <MenuItem value="">Ninguno</MenuItem>
+          <MenuItem value="masculino">Masculino</MenuItem>
+          <MenuItem value="femenino">Femenino</MenuItem>
+        </Select>
+      </div>
+      <div>
+        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+          <SearchIcon />
           <TextField
             variant="standard"
             type="text"
@@ -139,7 +151,9 @@ const TableProducts = () => {
             value={filterChange}
             onChange={handleFilterChange}
           ></TextField>
-        </div>
+        </Box>
+      </div>
+      <Paper className={classes.root} style={{ zIndex: 1 }}>
         <TableContainer>
           <Table className="" stickyHeader aria-label="sticky table">
             <TableHead>
@@ -148,14 +162,15 @@ const TableProducts = () => {
                 <TableCell align="right" style={{ minWidth: 80 }}>
                   Genero
                 </TableCell>
-                <TableCell align="right" style={{ width: 190 }}>
-                  Descripcion
-                </TableCell>
+
                 <TableCell align="right" style={{ minWidth: 130 }}>
                   Precio
                 </TableCell>
                 <TableCell align="right" style={{ minWidth: 130 }}>
                   Marca
+                </TableCell>
+                <TableCell align="right" style={{ minWidth: 130 }}>
+                  Activo
                 </TableCell>
                 <TableCell align="right" style={{ minWidth: 120 }}>
                   Eliminar
@@ -181,9 +196,12 @@ const TableProducts = () => {
                           />
                         </TableCell>
                         <TableCell align="right">{item.gender}</TableCell>
-                        <TableCell align="right">{item.description}</TableCell>
+
                         <TableCell align="right">{item.price}</TableCell>
                         <TableCell align="right">{item.brand}</TableCell>
+                        <TableCell align="right">
+                          {item.active === 1 ? <b>Si</b> : <p>No</p>}
+                        </TableCell>
                         <TableCell align="right">
                           <button
                             onClick={() => handleOpenDeleteForm(true, item)}
@@ -215,9 +233,12 @@ const TableProducts = () => {
                           />
                         </TableCell>
                         <TableCell align="right">{item.gender}</TableCell>
-                        <TableCell align="right">{item.description}</TableCell>
+
                         <TableCell align="right">{item.price}</TableCell>
                         <TableCell align="right">{item.brand}</TableCell>
+                        <TableCell align="right">
+                          {item.active === 1 ? <b>Si</b> : <p>No</p>}
+                        </TableCell>
                         <TableCell align="right">
                           <button
                             onClick={() => handleOpenDeleteForm(true, item)}

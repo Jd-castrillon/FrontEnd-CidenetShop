@@ -10,7 +10,7 @@ import CarouselRaking from "../components/carousel/CarouselRaking";
 import TextField from "@mui/material/TextField";
 import NavigateBar from "../components/header/NavigateBar";
 
-import { getProducts } from "../service/GetProducts";
+import GetActiveProducts from "../service/GetActiveProducts";
 
 const ItemListContainer = () => {
   const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
@@ -23,10 +23,10 @@ const ItemListContainer = () => {
     const ac = new AbortController();
     setItemsFilter([]);
     setSearch("");
-    let url: string = `http://localhost:7070/jdshop/products/${productType}`;
+    let url: string = `http://localhost:7070/jdshop/products/active/${productType}`;
 
     const getListProducts = async () => {
-      const products = getProducts(url);
+      const products = GetActiveProducts(url);
 
       if (productType) {
         setItemProduct(await products);
@@ -71,8 +71,7 @@ const ItemListContainer = () => {
       <ImageHero sectionImage={sectionImage} />
 
       <CarouselRaking />
-
-      <div className="section-products__wrapper-input">
+      <div className="section-products__wrapper-input" id="section">
         <TextField
           autoFocus
           margin="dense"

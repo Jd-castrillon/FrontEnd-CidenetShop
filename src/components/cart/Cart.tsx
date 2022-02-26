@@ -82,6 +82,12 @@ const Cart = () => {
       orderDetails,
       userOnline[0].token
     );
+    if(queryOutOfStock.message === "Don't found ExistingQuantity"){
+      resetAmountCart();
+      setSpinner(false);
+      setSetShowForm(false);
+      return setOutOfStockMessage(true);
+    }
 
     if (
       queryOutOfStock.message !== "Todos los productos tienen stock suficiente"
