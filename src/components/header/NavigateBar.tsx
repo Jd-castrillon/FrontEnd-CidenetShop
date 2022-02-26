@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import IconsSesion from "./IconsSesion";
@@ -13,8 +13,17 @@ import { Link } from "react-router-dom";
 
 const NavigateBar = () => {
   const [click, setClick] = useState(false);
+  useEffect(() => {
+  
+  }, []);
 
-  const handleClick = () => setClick(!click);
+  const handleClick = () => {
+    if (click === true) {
+      setClick(false);
+    } else if (click === false) {
+      setClick(true);
+    }
+  };
 
   const { totalAmount } = React.useContext(CartContext);
 
@@ -26,30 +35,42 @@ const NavigateBar = () => {
             Cidenet
           </NavLink>
 
-          <ul className={click ? "nav-menu" : "nav-menu active"} >
-            <li className="nav-item">
-              <NavLink to="/" className="nav-links active" onClick={handleClick}>
+          <ul className={click ? "nav-menu" : "nav-menu active"}>
+            <li className="nav-item" onClick={handleClick}>
+              <NavLink
+                to="/"
+                className="nav-links active"
+                onClick={handleClick}
+              >
                 Inicio
               </NavLink>
             </li>
             <li className="nav-item" onClick={handleClick}>
-              <NavLink to="/masculino" className="nav-links" onClick={handleClick}>
-               <button onClick={handleClick}>Masculino</button> 
+              <NavLink
+                to="/masculino"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Masculino
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink to="/femenino" className="nav-links" onClick={() => handleClick}>
+            <li className="nav-item" onClick={handleClick}>
+              <Link
+                to="/femenino"
+                className="nav-links"
+                onClick={handleClick}
+              >
                 Femenino
-              </NavLink>
+              </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item" onClick={handleClick}>
               <NavLink to="/cart" className="nav-links" onClick={handleClick}>
                 Carrito
               </NavLink>
             </li>
           </ul>
           <div className="nav-icon" onClick={handleClick}>
-            <MenuIcon  />
+            <MenuIcon />
           </div>
         </div>
       </nav>
