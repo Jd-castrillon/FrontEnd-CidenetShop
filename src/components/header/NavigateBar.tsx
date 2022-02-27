@@ -46,7 +46,7 @@ const NavigateBar = () => {
                 </NavLink>
               ) : (
                 <NavLink to="/login" className="nav-links">
-                  <PersonIcon style={{ marginLeft: "1rem", color: "white" }} />
+                  <PersonIcon style={{   color: "white" }} />
                 </NavLink>
               )}
             </li>

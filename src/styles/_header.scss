@@ -65,11 +65,11 @@
 }
 .nav-item:hover::after {
   width: 100%;
-  background-color: yellow;
+  background-color: rgb(204, 204, 204);
 }
 
 .nav-item .active {
-  border-bottom: 1px solid yellow;
+  border-bottom: 1px solid rgb(216, 216, 216);
 }
 
 .nav-icon {
@@ -147,7 +147,7 @@
     z-index: 1;
   }
   .nav-item .active {
-    color: #ffdd40;
+    color: hsl(45, 5%, 71%);
     border: none;
   }
   .nav-links {

@@ -12,7 +12,7 @@ body {
   padding: 0%;
   height: 100%;
   width: 100%;
-  max-width: 100%;
+  min-height: 200vh;
   font-family: "Rubik", sans-serif;
   background-color: $Gray h1, h2, h3, h4 {
     margin: 0%;
@@ -67,6 +67,6 @@ button,
 
 .hide-for-desktop {
   @include breakpoint-up(large) {
-    display: none; 
+    display: none;
   }
 }

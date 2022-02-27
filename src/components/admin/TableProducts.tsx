@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import { InputLabel } from "@mui/material";
 import { makeStyles } from "@material-ui/core/styles";
 import { Table, TableBody, TableCell } from "@material-ui/core";
 import { TableContainer, TableHead, TableRow } from "@material-ui/core";
@@ -13,6 +13,7 @@ import DeleteProductsForm from "../forms/DeleteProductForm";
 import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import AddProduct from "./AddProduct";
 
 import SearchIcon from "@mui/icons-material/Search";
 
@@ -20,12 +21,7 @@ import { ItemAdminProduct } from "../../types/ItemAdminProduct";
 import UpdateProduct from "./UpdateProduct";
 
 const useStyles = makeStyles({
-  root: {
-    width: "80%",
-    margin: "auto",
-    marginTop: "20px",
-    minHeight: "77vh",
-  },
+  root: {},
 });
 
 const TableProducts = () => {
@@ -35,6 +31,11 @@ const TableProducts = () => {
   const [itemsFilter, setItemsFilter] = useState([] as ItemAdminProduct[]);
   const [filterChange, setFilterChange] = useState("");
   const [genderChange, setGenderChange] = useState("");
+  const [showAddForm, setShowAddForm] = useState(false);
+
+  const hanleCloseAddForm = () => {
+    setShowAddForm(false);
+  };
 
   const { getToken } = React.useContext(AuthContext);
 
@@ -55,7 +56,7 @@ const TableProducts = () => {
 
     const getListProducts = async () => {
       const products = getProducts(url, getToken());
-      
+
       setItemProduct(await products);
     };
 
@@ -122,37 +123,53 @@ const TableProducts = () => {
     filter(e.target.value);
   };
 
+  if (showAddForm) {
+    return <AddProduct open={showAddForm} handleClose={hanleCloseAddForm} />;
+  }
+
   return (
-    <div>
-      <div className="addProduct__input">
-        <Select
-          variant="standard"
-          id="gender"
-          name="gender"
-          label="Genero"
-          value={genderChange}
-          style={{ width: "13rem" }}
-          onChange={handleSelectChange}
-        >
-          <MenuItem value="">Ninguno</MenuItem>
-          <MenuItem value="masculino">Masculino</MenuItem>
-          <MenuItem value="femenino">Femenino</MenuItem>
-        </Select>
-      </div>
-      <div>
-        <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-          <SearchIcon />
-          <TextField
+    <div className="tableProducts-container">
+      <div className="filters">
+        
+        <div className="filter">
+          <Box sx={{ display: "flex", alignItems: "flex-end" , paddingLeft:"1rem", paddingRight:"1rem" }}>
+            <SearchIcon />
+            <TextField
+              variant="standard"
+              type="text"
+              id="filter"
+              name="filter"
+              label="filtrar"
+              value={filterChange}
+              onChange={handleFilterChange}
+            ></TextField>
+          </Box>
+        </div>
+        <div className="filter" style={{}}>
+        <InputLabel id="gender">Genero</InputLabel>
+
+          <Select
             variant="standard"
-            type="text"
-            id="filter"
-            name="filter"
-            label="filtrar"
-            value={filterChange}
-            onChange={handleFilterChange}
-          ></TextField>
-        </Box>
+            id="gender"
+            name="gender"
+            label="Genero"
+            value={genderChange}
+            style={{ width: "13rem" }}
+            onChange={handleSelectChange}
+            
+          >
+            <MenuItem value="">Ninguno</MenuItem>
+            <MenuItem value="masculino">Masculino</MenuItem>
+            <MenuItem value="femenino">Femenino</MenuItem>
+          </Select>
+        </div>
+        <div className="btn-container filter">
+          <button className="btn-add" onClick={() => setShowAddForm(true)}>
+            <div className="">Agregar Producto</div>
+          </button>
+        </div>
       </div>
+
       <Paper className={classes.root} style={{ zIndex: 1 }}>
         <TableContainer>
           <Table className="" stickyHeader aria-label="sticky table">
