@@ -17,7 +17,7 @@ body {
   height: 100%;
   width: 100%;
   min-height: 200vh;
-  font-family: "Rubik", sans-serif;
+  font-family: 'Rubik', sans-serif;
   background-color: #dbd8d8 h1, h2, h3, h4;
   background-color-margin: 0%;
   background-color-padding: 0%;
@@ -69,18 +69,6 @@ button,
           text-decoration: "none";
   border: 0;
   cursor: pointer;
-}
-
-@media (max-width: 63.9375em) {
-  .hide-for-mobile {
-    display: none;
-  }
-}
-
-@media (min-width: 64em) {
-  .hide-for-desktop {
-    display: none;
-  }
 }
 
 .navbarcontainer {
@@ -170,11 +158,11 @@ button,
 
 .nav-item:hover::after {
   width: 100%;
-  background-color: #cccccc;
+  background-color: yellow;
 }
 
 .nav-item .active {
-  border-bottom: 1px solid #d8d8d8;
+  border-bottom: 1px solid yellow;
 }
 
 .nav-icon {
@@ -257,7 +245,7 @@ button,
     z-index: 1;
   }
   .nav-item .active {
-    color: #b9b7b1;
+    color: #ffdd40;
     border: none;
   }
   .nav-links {
