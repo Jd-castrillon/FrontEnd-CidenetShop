@@ -12,14 +12,9 @@ body {
   padding: 0%;
   height: 100%;
   width: 100%;
-  min-height: 200vh;
-  font-family: 'Rubik', sans-serif;
-  background-color: $Gray
-
-  h1,
-  h2,
-  h3,
-  h4 {
+  max-width: 100%;
+  font-family: "Rubik", sans-serif;
+  background-color: $Gray h1, h2, h3, h4 {
     margin: 0%;
     padding: 0%;
     font-weight: 300;
@@ -62,4 +57,16 @@ button,
   border: 0;
 
   cursor: pointer;
+}
+
+.hide-for-mobile {
+  @include breakpoint-down(medium) {
+    display: none;
+  }
+}
+
+.hide-for-desktop {
+  @include breakpoint-up(large) {
+    display: none; 
+  }
 }

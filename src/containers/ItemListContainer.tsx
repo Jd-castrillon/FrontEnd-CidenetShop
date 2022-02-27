@@ -12,13 +12,13 @@ import NavigateBar from "../components/header/NavigateBar";
 
 import GetActiveProducts from "../service/GetActiveProducts";
 
-
 const ItemListContainer = () => {
   const [itemProduct, setItemProduct] = useState([] as ItemProduct[]);
   const [itemsFilter, setItemsFilter] = useState([] as ItemProduct[]);
+  const [search, setSearch] = useState("");
 
   const { productType = "" } = useParams();
-  const [search, setSearch] = useState("");
+  const sectionImage = productType;
 
   useEffect(() => {
     const ac = new AbortController();
@@ -61,17 +61,22 @@ const ItemListContainer = () => {
   };
 
   if (itemProduct.length < 1) {
-    return <Spinner />;
+    return (
+      <>
+        <NavigateBar />
+        <ImageHero sectionImage={sectionImage} />
+        <Spinner />;
+      </>
+    );
   }
-
-  const sectionImage = productType;
 
   return (
     <div className="section-products__wrapper-products">
       <NavigateBar />
       <ImageHero sectionImage={sectionImage} />
-       
+
       <CarouselRaking />
+
       <div className="section-products__wrapper-input" id="section">
         <TextField
           autoFocus
@@ -85,12 +90,13 @@ const ItemListContainer = () => {
           onChange={hanledChange}
         />
       </div>
-
-      {itemsFilter.length > 0 ? (
-        <ItemSectionProductList list={itemsFilter} />
-      ) : (
-        <ItemSectionProductList list={itemProduct} />
-      )}
+      <div className="wrapper-sectionProducts">
+        {itemsFilter.length > 0 ? (
+          <ItemSectionProductList list={itemsFilter} />
+        ) : (
+          <ItemSectionProductList list={itemProduct} />
+        )}
+      </div>
     </div>
   );
 };

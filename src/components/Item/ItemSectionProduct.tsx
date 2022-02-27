@@ -2,7 +2,7 @@ import React from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { Link } from "react-router-dom";
 import { Navigate } from "react-router";
-import Box from "@material-ui/core/Box";
+
 import { ItemProduct } from "../../types/ItemProduct";
 
 // Types
@@ -19,52 +19,23 @@ const ItemSectionProduct: React.FC<Props> = ({ item }) => {
   };
 
   return (
-    <div
-      className="section-products__wrapper-items "
-      style={{ marginRight: "5rem" }}
-    >
-      <div className="section-products__wrapper-image" onClick={hanleNaviagte}>
-        <Box>
-          <Link to={`/item/${item.id}`}>
-            <img
-              src={urlImage}
-              alt={item.name}
-              className="section-products__image"
-              width="350"
-            />
-          </Link>
-        </Box>
+    <div className="item-sectionProducts-container">
+      <div className="image" onClick={hanleNaviagte}>
+        <Link to={`/item/${item.id}`}>
+          <img src={urlImage} alt={item.name} />
+        </Link>
       </div>
 
-      <div className="section-products__information">
-        <div>
-          <h6 style={{ margin: "0px", padding: "0.3rem" }}>{item.name}</h6>
-        </div>
+      <div className="information">
+        <h4>{item.name}</h4>
+
         <div className="flex felx-jc-sb">
-          <p
-            style={{
-              fontSize: "0.7rem",
-              margin: "0",
-              paddingTop: "0.2rem",
-              fontWeight: "bolder",
-            }}
-          >
-            precio:{" "}
-          </p>{" "}
-          <p
-            style={{
-              margin: "0px",
-              padding: "0.3rem",
-              fontWeight: "revert",
-              fontSize: "0.7rem",
-            }}
-          >
-            {item.price}
-          </p>
+          <p><b>$</b></p>
+          <p>{item.price}</p>
         </div>
         <Link to={`/item/${item.id}`}>
-          <button className="">
-            <AddShoppingCartIcon className="section-products__button" />
+          <button className="button">
+            <AddShoppingCartIcon fontSize="small" />
           </button>
         </Link>
       </div>

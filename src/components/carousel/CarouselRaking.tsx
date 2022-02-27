@@ -5,12 +5,12 @@ import { ItemProduct } from "../../types/ItemProduct";
 import { ImageList } from "@material-ui/core";
 
 import ItemCarousel from "./ItemCarousel";
-// import Item from "../Item/Item";
+
 
 export const CarouselRaking = () => {
   const [listItemRaking, setListItemRaking] = useState([] as ItemProduct[]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+ 
   const getListRankingProducts = async () => {
     const listRankingProducts = await GetRankingProducts().then((res) => res);
 
