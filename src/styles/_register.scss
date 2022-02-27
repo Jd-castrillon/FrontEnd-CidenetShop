@@ -3,7 +3,7 @@
 
 
     &__wrapper{
-        width: 8rem;
+        width: 100%;
         min-height: 100%;
     }
 
@@ -12,7 +12,7 @@
     &__form{
         border: black solid 1px;
         width: 30rem;
-        height: 33rem;
+        height: 35.3rem;
         background-color: rgb(255, 255, 255);
     }
 
@@ -39,6 +39,7 @@
         left: 190px;
         border-radius: 50px;
         background-color: black;
+        margin-bottom: 1rem;
     }
 
 
@@ -49,10 +50,10 @@
         
     }
 
-    &__cualquiercosa{
+    &__image{
         
         
-        height: 21rem;
+        height: 30rem;
        
         width: 100%;
         flex-direction: row;
@@ -81,8 +82,36 @@
         display: flex;
         flex-direction: row;
         justify-content: flex-start;
-        align-items: center;
+        align-items: flex-start;
         flex-wrap: wrap;
     }
 
+
+
+
+}
+@include breakpoint-down(small) {
+    .register__main{
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: scroll;
+        height: 100%;
+    }
+    .register__form{
+        border: none;
+        height: 30rem;
+    }
+
+    .register__iconCidenet{
+        left: 133px;
+        margin-bottom: 1rem;
+    }
+
+    .register__input{
+        
+        padding-top: 1rem;
+    }
+    
 }

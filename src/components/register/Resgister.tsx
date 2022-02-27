@@ -43,7 +43,7 @@ const Resgister = () => {
       .required("El nombre es requerido")
       .matches(/^[aA-zZ\s]+$/, "No caractares especiales"),
     email: Yup.string()
-      .email("Direccion de correo inválida")
+      .email("Dirección de correo inválida")
       .required("El email es requerido"),
     password: Yup.string()
       .min(5, "contraseña demasiado corta")
@@ -51,7 +51,7 @@ const Resgister = () => {
       .required("Se necesita contraseña entre 5 y 15 caracteres"),
     confirmPassword: Yup.string()
       .required("Digita nuevamente la contraseña")
-      .oneOf([Yup.ref("password"), null], "las contraseñas no coinciden"),
+      .oneOf([Yup.ref("password"), null], "Las contraseñas no coinciden"),
   });
 
   const errorMessage = () =>
@@ -117,16 +117,16 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
   touched,
 }) => {
   return (
-    <div style={{height:"100%"}}>
+    <div>
       <form onSubmit={handleSubmit}>
-        <div className="flex flex-ai-e register__cualquiercosa">
+        <div className="flex flex-ai-e register__image">
           <div className="register__form">
             <div className="register__iconCidenet"></div>
 
             <div className="flex   register__main">
               {/* primera columna */}
               <div className="register__column">
-                <div className="register__input">
+                <div className="register__input" >
                   <Select
                     id="documentType"
                     name="documentType"
@@ -143,10 +143,22 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
                 </div>
                 <div className="register__input">
                   {errors.name && touched.name ? (
-                    <div style={{ color: "red", paddingBottom: "0.3rem" }}>
+                    <div
+                      style={{
+                        color: "red",
+                        paddingTop: "0.5rem",
+                      }}
+                    >
                       {errors.name}
                     </div>
-                  ) : null}
+                  ) : (
+                    <div
+                      style={{
+                        color: "red",
+                        paddingTop: "0.5rem",
+                      }}
+                    ></div>
+                  )}
                   <TextField
                     type="text"
                     id="name"
@@ -159,7 +171,9 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
                 <div className="register__input">
                   {errors.password && touched.password ? (
                     <div style={{ color: "red" }}> {errors.password}</div>
-                  ) : null}
+                  ) : (<div style={{ color: "red" , paddingTop:"1rem" }}>
+
+                  </div>)}
                   <TextField
                     margin="normal"
                     name="password"
