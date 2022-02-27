@@ -1,6 +1,8 @@
 html{
   font-size: 120%;
-  box-sizing: border-box;
+  @include breakpoint-down(small) {
+    box-sizing: border-box;
+  }
 }
 
 *, *::before, *::after{
