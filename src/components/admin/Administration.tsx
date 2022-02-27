@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import NavigateBar from "../header/NavigateBar";
 import TableProducts from "./TableProducts";
-import AddIcon from "@mui/icons-material/Add";
+
 import AddProduct from "./AddProduct";
-import Button from "@mui/material/Button";
+
 
 const Administration = () => {
   const [showAddForm, setShowAddForm] = useState(false);
@@ -17,22 +17,13 @@ const Administration = () => {
   }
 
   return (
-    <div className="">
+    <div className="adminSection">
       <NavigateBar />
 
-      <h1>Aca vamos a administrar los productos</h1>
+      <h2>Zona VIP</h2>
 
-      <div >
-        <div>
-          <Button
-            variant="outlined"
-            onClick={() => setShowAddForm(true)}
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <AddIcon /> Agregar Producto
-          </Button>
-        </div>
-
+      <div className="wrapper-tableProducts">
+        
         <TableProducts />
       </div>
     </div>
