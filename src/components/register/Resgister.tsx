@@ -117,125 +117,127 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
   touched,
 }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="flex flex-ai-e register__cualquiercosa">
-        <div className="register__form">
-          <div className="register__iconCidenet"></div>
+    <div style={{height:"100%"}}>
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-ai-e register__cualquiercosa">
+          <div className="register__form">
+            <div className="register__iconCidenet"></div>
 
-          <div className="flex   register__main">
-            {/* primera columna */}
-            <div className="register__column">
-              <div className="register__input">
-                <Select
-                  id="documentType"
-                  name="documentType"
-                  value={values.documentType}
-                  onChange={handleChange}
+            <div className="flex   register__main">
+              {/* primera columna */}
+              <div className="register__column">
+                <div className="register__input">
+                  <Select
+                    id="documentType"
+                    name="documentType"
+                    value={values.documentType}
+                    onChange={handleChange}
+                  >
+                    <MenuItem value="cedula de ciudadania">
+                      Cedula de ciudadania
+                    </MenuItem>
+                    <MenuItem value="tarjeta de identidad">
+                      Tarjeta de identidad
+                    </MenuItem>
+                  </Select>
+                </div>
+                <div className="register__input">
+                  {errors.name && touched.name ? (
+                    <div style={{ color: "red", paddingBottom: "0.3rem" }}>
+                      {errors.name}
+                    </div>
+                  ) : null}
+                  <TextField
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={values.name}
+                    onChange={handleChange}
+                    label="Nombre"
+                  />
+                </div>
+                <div className="register__input">
+                  {errors.password && touched.password ? (
+                    <div style={{ color: "red" }}> {errors.password}</div>
+                  ) : null}
+                  <TextField
+                    margin="normal"
+                    name="password"
+                    label="Contraseña"
+                    type="password"
+                    id="password"
+                    autoComplete="current-password"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+
+              {/* segunda columna */}
+              <div className="register__column">
+                <div className="register__input">
+                  {errors.documentNumber && touched.documentNumber ? (
+                    <div style={{ color: "red" }}>{errors.documentNumber}</div>
+                  ) : null}
+                  <TextField
+                    type="text"
+                    id="documentNumber"
+                    name="documentNumber"
+                    value={values.documentNumber}
+                    onChange={handleChange}
+                    label="Número de documento"
+                  />
+                </div>
+
+                <div className="register__input">
+                  {errors.email && touched.email ? (
+                    <div style={{ color: "red" }}> {errors.email} </div>
+                  ) : null}
+                  <TextField
+                    type="email"
+                    id="email"
+                    name="email"
+                    label="Email"
+                    value={values.email}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="register__input">
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <div style={{ color: "red" }}>{errors.confirmPassword}</div>
+                  ) : null}
+                  <TextField
+                    margin="normal"
+                    name="confirmPassword"
+                    label="Confirmar contraseña"
+                    type="password"
+                    id="confirmPassword"
+                    autoComplete="current-password"
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="register__button flex flex-jc-sb flex-ai-c">
+              <div>
+                <Grid item>
+                  <Link to="/login">{"Iniciar sesion"}</Link>
+                </Grid>
+              </div>
+              <div>
+                <Button
+                  style={{ marginLeft: "1rem" }}
+                  type="submit"
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
                 >
-                  <MenuItem value="cedula de ciudadania">
-                    Cedula de ciudadania
-                  </MenuItem>
-                  <MenuItem value="tarjeta de identidad">
-                    Tarjeta de identidad
-                  </MenuItem>
-                </Select>
+                  Registrarse
+                </Button>
               </div>
-              <div className="register__input">
-                {errors.name && touched.name ? (
-                  <div style={{ color: "red", paddingBottom: "0.3rem" }}>
-                    {errors.name}
-                  </div>
-                ) : null}
-                <TextField
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={values.name}
-                  onChange={handleChange}
-                  label="Nombre"
-                />
-              </div>
-              <div className="register__input">
-                {errors.password && touched.password ? (
-                  <div style={{ color: "red" }}> {errors.password}</div>
-                ) : null}
-                <TextField
-                  margin="normal"
-                  name="password"
-                  label="Contraseña"
-                  type="password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-
-            {/* segunda columna */}
-            <div className="register__column">
-              <div className="register__input">
-                {errors.documentNumber && touched.documentNumber ? (
-                  <div style={{ color: "red" }}>{errors.documentNumber}</div>
-                ) : null}
-                <TextField
-                  type="text"
-                  id="documentNumber"
-                  name="documentNumber"
-                  value={values.documentNumber}
-                  onChange={handleChange}
-                  label="Número de documento"
-                />
-              </div>
-
-              <div className="register__input">
-                {errors.email && touched.email ? (
-                  <div style={{ color: "red" }}> {errors.email} </div>
-                ) : null}
-                <TextField
-                  type="email"
-                  id="email"
-                  name="email"
-                  label="Email"
-                  value={values.email}
-                  onChange={handleChange}
-                />
-              </div>
-              <div className="register__input">
-                {errors.confirmPassword && touched.confirmPassword ? (
-                  <div style={{ color: "red" }}>{errors.confirmPassword}</div>
-                ) : null}
-                <TextField
-                  margin="normal"
-                  name="confirmPassword"
-                  label="Confirmar contraseña"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="current-password"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div className="register__button flex flex-jc-sb flex-ai-c">
-            <div>
-              <Grid item>
-                <Link to="/login">{"Iniciar sesion"}</Link>
-              </Grid>
-            </div>
-            <div>
-              <Button
-                style={{ marginLeft: "1rem" }}
-                type="submit"
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-              >
-                Registrarse
-              </Button>
             </div>
           </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </div>
   );
 };
 

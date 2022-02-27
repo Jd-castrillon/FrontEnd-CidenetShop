@@ -4,7 +4,7 @@
 
     &__wrapper{
         width: 8rem;
-        height: 10rem;
+        min-height: 100%;
     }
 
     
@@ -79,8 +79,9 @@
     &__column{
         width: 14rem;
         display: flex;
+        flex-direction: row;
         justify-content: flex-start;
-        align-items: flex-end;
+        align-items: center;
         flex-wrap: wrap;
     }
 
