@@ -34,12 +34,18 @@ const Login = () => {
 
   let error = false;
 
+  const errorDontFoundUser = () =>
+    toast.error(
+      "No se ha podido iniciar sesión, válida los campos nuevamente."
+    );
+
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
 
     try {
       const user = await login(userName, password);
-      console.table(user);
+
+     
       if (user.token && user.userName && user.authorities) {
         await localStorage.setItem("AuthUser", JSON.stringify(user));
       }
@@ -52,21 +58,19 @@ const Login = () => {
         navigate("/");
       } else if (isLogged()) {
         navigate(state?.path || "/");
+      } else if (user.message === "No se ha encontrado al usuario") {
+        errorDontFoundUser();
       } else {
         errorLogin();
       }
-    } catch (error) {
-      errorLogin();
-      console.log(error);
-      console.log("Ha ocurrido un error");
-    }
+    } catch (error) {}
   };
 
   const errorLogin = () =>
     toast.error("No se ha podido iniciar sesión, intentalo nuevamente");
 
   return (
-    <div className="login__image">
+    <div className="login__image ">
       <Toaster position="top-left" />
       <NavigateBar />
       <div className="login__main" style={{ boxSizing: "content-box" }}>
@@ -75,7 +79,7 @@ const Login = () => {
           justifyContent="flex-end"
           alignItems="center"
           component="main"
-          sx={{ height: "100vh", bgcolor: "" }}
+          sx={{ height: "91vh", bgcolor: "" }}
         >
           <Grid
             item

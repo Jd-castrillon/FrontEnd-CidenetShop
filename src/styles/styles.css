@@ -608,8 +608,6 @@ button,
   -webkit-box-pack: left;
       -ms-flex-pack: left;
           justify-content: left;
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
 }
 
 .login__iconCidenet {
@@ -625,6 +623,13 @@ button,
   top: -20px;
   border-radius: 50px;
   background-color: black;
+}
+
+@media (max-width: 39.9375em) {
+  .login__image {
+    background-image: none;
+    background-color: #2c2d58;
+  }
 }
 
 .register__wrapper {
