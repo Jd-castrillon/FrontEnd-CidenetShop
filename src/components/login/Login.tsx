@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 // styles
 
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
+
 import TextField from "@mui/material/TextField";
 
 import Paper from "@mui/material/Paper";
@@ -39,12 +39,10 @@ const Login = () => {
 
     try {
       const user = await login(userName, password);
-      console.table(user)
+      console.table(user);
       if (user.token && user.userName && user.authorities) {
         await localStorage.setItem("AuthUser", JSON.stringify(user));
-        
       }
-
 
       await logIn();
 
@@ -71,7 +69,7 @@ const Login = () => {
     <div className="login__image">
       <Toaster position="top-left" />
       <NavigateBar />
-      <div className="login__main">
+      <div className="login__main" style={{ boxSizing: "content-box" }}>
         <Grid
           container
           justifyContent="flex-end"
@@ -79,8 +77,6 @@ const Login = () => {
           component="main"
           sx={{ height: "100vh", bgcolor: "" }}
         >
-          <CssBaseline />
-
           <Grid
             item
             xs={12}

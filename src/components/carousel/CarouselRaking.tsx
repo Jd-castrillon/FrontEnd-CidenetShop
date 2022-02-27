@@ -25,8 +25,8 @@ export const CarouselRaking = () => {
 
   return (
     <div className="carousel__root">
-      <h3 style={{paddingTop:"0.5rem" , display:"flex", justifyContent:"center",fontWeight:"bold"}}>
-        <b>Nuestros productos más destacados</b>
+      <h3 style={{paddingTop:"0.5rem" , display:"flex", justifyContent:"center"}}>
+        Nuestros productos más destacados
       </h3>
       <ImageList
         cols={7}

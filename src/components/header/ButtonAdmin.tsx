@@ -1,15 +1,14 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+
+import { NavLink } from "react-router-dom";
 
 const ButtonAdmin = () => {
   return (
-    <div>
-      <Link to="/admin" >
-      <button className="header__buttons" type="button" >
+    <div className="nav-item">
+      <NavLink to="/admin" className="nav-links">
         Administrar
-      </button>
-      </Link>
+      </NavLink>
     </div>
   );
 };
