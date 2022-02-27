@@ -22,15 +22,19 @@ const ItemCarousel = ({ item }: Props) => {
           <h4>{item.name}</h4>
 
           <div className="">
-            <b>$ {item.price}</b>
+            <b>$</b> {item.price}
           </div>
-        </div>
 
-        <div className="container__button">
+
+          <div className="container__button">
           <Link to={`/item/${item.id}`}>
-            <button className="button">Ver más</button>
+            <button className="button">VER  MÁS</button>
           </Link>
         </div>
+
+        </div>
+
+        
       </div>
     </div>
   );

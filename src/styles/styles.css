@@ -17,17 +17,12 @@ body {
   height: 100%;
   width: 100%;
   min-height: 200vh;
-  font-family: "Roboto", sans-serif;
-  background-color: #dbd8d8;
-}
-
-body h1,
-body h2,
-body h3,
-body h4 {
-  margin: 0px;
-  font-weight: 300;
-  line-height: 1.1;
+  font-family: 'Rubik', sans-serif;
+  background-color: #dbd8d8 h1, h2, h3, h4;
+  background-color-margin: 0%;
+  background-color-padding: 0%;
+  background-color-font-weight: 300;
+  background-color-line-height: 1.1;
 }
 
 .flex {
@@ -144,7 +139,7 @@ button,
 
 .navbar {
   background-color: black;
-  height: 80px;
+  height: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -274,6 +269,9 @@ button,
 }
 
 @media (max-width: 39.9375em) {
+  .navbar {
+    height: 70px;
+  }
   .nav-container {
     position: absolute;
   }
@@ -288,14 +286,14 @@ button,
     width: 100%;
     border-top: 1pxsolid #fff;
     position: absolute;
-    top: 60px;
+    top: 50px;
     left: -110%;
     opacity: 1;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
   .iconCidenet {
-    display: none;
+    left: 100px;
   }
   .nav-menu.active {
     background: #000000;
@@ -495,7 +493,7 @@ button,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: larger;
+  font-size: 1.5rem;
   background-color: #e2dbdb;
   border-radius: 0px 0px 10px 10px;
 }
@@ -751,20 +749,49 @@ button,
       flex-wrap: wrap;
 }
 
+.carousel h3 {
+  font-family: "Epilogue", sans-serif;
+  letter-spacing: 0.000000001rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 1rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin: 1px;
+}
+
 .itemCarousel {
-  padding: 1rem;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
 }
 
 .itemCarousel__container {
   border-radius: 15px 15px 15px 15px;
-  height: 23rem;
+  height: 22.5rem;
   background-color: #e6e6e6;
   width: 13rem;
-  -webkit-box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-          box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.1em 0.5em 1em rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.1em 0.5em 1em rgba(0, 0, 0, 0.3);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .itemCarousel .container__image img {
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 15px 15px 0px 0px;
   height: 15rem;
   width: 13rem;
@@ -778,7 +805,8 @@ button,
 }
 
 .itemCarousel .information {
-  height: 5rem;
+  height: 4rem;
+  font-weight: 400;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -786,21 +814,28 @@ button,
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   width: 13rem;
+  font-size: 0.9rem;
+  padding-bottom: 1.5rem;
+  margin: 1px;
 }
 
 .itemCarousel .information h4 {
+  height: 0.5rem;
+  color: rgba(0, 0, 0, 0.856);
+  font-weight: 600;
   display: block;
   font-size: medium;
-  font-weight: bolder;
-  padding-bottom: 0.5rem;
-  border: none;
+}
+
+.itemCarousel .information b {
+  color: rgba(0, 0, 0, 0.856);
 }
 
 .itemCarousel .container__button {
@@ -813,6 +848,9 @@ button,
 }
 
 .itemCarousel .button {
+  font-family: "Rubik", sans-serif;
+  letter-spacing: 0.2rem;
+  font-weight: 500;
   display: inline-block;
   padding: 0.8rem 3.5rem;
   background-color: black;
@@ -821,26 +859,28 @@ button,
   cursor: pointer;
   color: white;
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: small;
+  margin-top: 0.4rem;
   -webkit-transition: opacity 200ms ease-in-out;
   transition: opacity 200ms ease-in-out;
+  -webkit-box-shadow: inset 0 -3em 6em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.1em 0.9em 1em rgba(0, 0, 0, 0.3);
+          box-shadow: inset 0 -3em 6em rgba(0, 0, 0, 0.1), 0 0 0 0px white, 0.1em 0.9em 1em rgba(0, 0, 0, 0.3);
+  -webkit-transition: -webkit-box-shadow 200ms ease-in-out;
+  transition: -webkit-box-shadow 200ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out;
+  transition: box-shadow 200ms ease-in-out, -webkit-box-shadow 200ms ease-in-out;
 }
 
 .itemCarousel .button:hover {
-  opacity: 0.75;
+  opacity: 0.85;
+  -webkit-box-shadow: inset 0 -3em 6em rgba(0, 0, 0, 0.4), 0 0 0 0px white, 0.1em 1em 2em rgba(0, 0, 0, 0.7);
+          box-shadow: inset 0 -3em 6em rgba(0, 0, 0, 0.4), 0 0 0 0px white, 0.1em 1em 2em rgba(0, 0, 0, 0.7);
 }
 
-.carousel {
-  overflow: hidden;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+@media (max-width: 39.9375em) {
+  .carousel h3 {
+    font-size: 2rem;
+  }
 }
 
 .detail-product .button {

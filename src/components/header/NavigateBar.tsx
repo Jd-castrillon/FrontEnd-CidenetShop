@@ -35,7 +35,7 @@ const NavigateBar = () => {
     <div className="navbarcontainer">
       <nav className="navbar">
         <div className="nav-container">
-          <ul className={!click ? "nav-menu left " : "nav-menu left active"}>
+          <ul className={!click ? "nav-menu left " : "nav-menu left"}>
             <li className="nav-item" onClick={handleClick}>
               {isLogged() ? (
                 <NavLink to="" className="nav-links">

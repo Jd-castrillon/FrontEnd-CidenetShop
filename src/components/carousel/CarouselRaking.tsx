@@ -4,8 +4,6 @@ import { ItemProduct } from "../../types/ItemProduct";
 
 import { ImageList } from "@material-ui/core";
 
-
-
 import ItemCarousel from "./ItemCarousel";
 // import Item from "../Item/Item";
 
@@ -24,10 +22,9 @@ export const CarouselRaking = () => {
   }, []);
 
   return (
-    <div className="carousel__root">
-      <h3 style={{paddingTop:"0.5rem" , display:"flex", justifyContent:"center"}}>
-        Nuestros productos más destacados
-      </h3>
+    <div className="carousel">
+      <h3>Nuestros productos más destacados</h3>
+      <div className="">
       <ImageList
         cols={7}
         className="carousel__grid-list"
@@ -38,6 +35,7 @@ export const CarouselRaking = () => {
           <ItemCarousel key={item.id} item={item} />
         ))}
       </ImageList>
+      </div>
     </div>
   );
 };
