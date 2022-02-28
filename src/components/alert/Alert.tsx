@@ -28,8 +28,9 @@ const Alert = ({ text }: Props) => {
               style={{
                 backgroundColor: "#4A8BFD",
                 fontFamily: "'Rubik', sans-serif",
-                fontWeight: "lighter",
+                fontWeight: "bolder",
                 letterSpacing: "0.1rem",
+                color:"black"
               }}
             >
               Ver productos
