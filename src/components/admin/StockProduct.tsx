@@ -26,7 +26,7 @@ const StockProduct = ({ product }: Props) => {
   const [stock, setStock] = useState([] as existingQuantity[]);
 
   const [showSpinner, setShowSpinner] = useState(false);
-  const [isUpdate, setIsUpdate] = useState(false);
+  const [isUpdate, setIsUpdate] = useState<number>(0);
   const [isArrayUpdate, setIsArrayUpdate] = useState<number>(0);
 
   const digitsOnly = (value: any) => /^\d+$/.test(value);
@@ -60,12 +60,11 @@ const StockProduct = ({ product }: Props) => {
   }, [product, isUpdate, isArrayUpdate, getToken]);
 
   const handleDelete = async (shortText: string) => {
-    setIsUpdate(true);
     deleted();
-    setTimeout(() => {
-      DeleteStock(product.id, shortText, getToken());
-      setIsUpdate(false);
-    }, 100);
+
+    DeleteStock(product.id, shortText, getToken());
+
+    setIsUpdate(isUpdate + 1);
   };
 
   if (showSpinner) {
@@ -113,10 +112,8 @@ const StockProduct = ({ product }: Props) => {
             validationSchema={createStockSchema}
             onSubmit={async (values) => {
               setShowSpinner(true);
-              setIsUpdate(true);
 
               setTimeout(() => {
-                setIsUpdate(false);
                 const response = CreateStock(
                   values.idProduct,
                   values.shortText,
@@ -129,7 +126,7 @@ const StockProduct = ({ product }: Props) => {
                     setShowSpinner(false);
                     await setIsArrayUpdate(2);
                     created();
-                    setIsUpdate(false);
+                    setIsUpdate(isUpdate + 1);
                     setIsArrayUpdate(1);
                   } else if (
                     res.message === "That ExistingQuantity already exists"
@@ -140,7 +137,7 @@ const StockProduct = ({ product }: Props) => {
                   }
                 });
 
-                setIsUpdate(false);
+                setIsUpdate(isUpdate + 1);
                 setShowSpinner(false);
               }, 500);
             }}
@@ -156,9 +153,8 @@ const StockProduct = ({ product }: Props) => {
             }}
             validationSchema={updateStockSchema}
             onSubmit={async (values) => {
-              setIsUpdate(true);
               setTimeout(() => {
-                setIsUpdate(false);
+                setIsUpdate(isUpdate + 1);
                 const response = UpdateStock(
                   values.idProduct,
                   values.shortText,
@@ -171,8 +167,7 @@ const StockProduct = ({ product }: Props) => {
                   if (res.message === "Stock was update") {
                     update(values.shortText);
                     await setIsArrayUpdate(2);
-                    setIsUpdate(false);
-                    setIsArrayUpdate(1);
+                    setIsUpdate(isUpdate + 1);
                   } else if (res.message === "Quantity is invalid") {
                     errorQuantity();
                   } else if (res.message === "Don't found ExistingQuantity") {
@@ -182,7 +177,7 @@ const StockProduct = ({ product }: Props) => {
                   }
                 });
 
-                setIsUpdate(false);
+                setIsUpdate(isUpdate + 1);
               }, 500);
             }}
             component={UpdateStockForm}

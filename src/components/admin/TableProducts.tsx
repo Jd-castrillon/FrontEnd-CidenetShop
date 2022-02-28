@@ -165,7 +165,7 @@ const TableProducts = () => {
         </div>
         <div className="btn-container filter">
           <button className="btn-add" onClick={() => setShowAddForm(true)}>
-            <div className="">Agregar Producto</div>
+            <div className="">AGREGAR PRODUCTO</div>
           </button>
         </div>
       </div>

@@ -126,6 +126,7 @@ const ItemDetail = ({ item }: Props) => {
                       backgroundColor: "#000",
 
                       marginRight: "1.5rem",
+                      fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem" 
                     }}
                   >
                     Ir al carrito
@@ -137,7 +138,7 @@ const ItemDetail = ({ item }: Props) => {
                   <Button
                     variant="contained"
                     color="primary"
-                    style={{ backgroundColor: "#4A8BFD" }}
+                    style={{ backgroundColor: "#4A8BFD" , fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem" }}
                   >
                     Continuar comprando
                   </Button>
@@ -147,8 +148,8 @@ const ItemDetail = ({ item }: Props) => {
           ) : (
             <Button
               variant="contained"
-              style={{ backgroundColor: "#000", color: "#fff" }}
-              fullWidth
+              style={{ backgroundColor: "#000", color: "#fff", marginBottom:"1rem", fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.2rem" }}
+              
               onClick={handleClickBuy}
               className="button"
               disabled={stock() === 0}

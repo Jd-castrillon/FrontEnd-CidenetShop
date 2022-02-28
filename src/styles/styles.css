@@ -203,7 +203,7 @@ button,
 }
 
 .left {
-  padding-right: 16rem;
+  padding-right: 8rem;
 }
 
 @media (min-width: 40em) {
@@ -1047,10 +1047,6 @@ button,
           align-items: center;
 }
 
-.createStockForm {
-  padding: 1rem;
-}
-
 .createStockForm h4 {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1142,7 +1138,7 @@ button,
   letter-spacing: 0.2rem;
   font-weight: 500;
   display: inline-block;
-  padding: 0.5rem 2.5rem;
+  padding: 0.7rem 2.5rem;
   background-color: black;
   border: 0;
   border-radius: 15px;
@@ -1212,9 +1208,9 @@ button,
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .tableProducts {
