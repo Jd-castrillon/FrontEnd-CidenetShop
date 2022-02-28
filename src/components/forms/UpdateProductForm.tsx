@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormikProps } from "formik";
 import TextField from "@mui/material/TextField";
 import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
-import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-
 
 interface FormModel {
   name: string;
@@ -24,7 +22,27 @@ const UpdateProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
   setFieldValue,
   errors,
   touched,
+  initialValues,
 }) => {
+  const [picture, setPicture] = useState<any>();
+  const [pictureDefault, setPictureDefault] = useState(true);
+
+  const uploadPicture = (picture: any) => {
+    let reader = new FileReader();
+    reader.onload = () => {
+      setPicture(reader.result);
+    };
+    try {
+      reader.readAsDataURL(picture);
+    } catch (error) {
+      setPictureDefault(false);
+    }
+  };
+
+  useEffect(() => {
+    uploadPicture(values.picture);
+  }, [values.picture, pictureDefault]);
+
   return (
     <div className="updateProductForm">
       <form onSubmit={handleSubmit}>
@@ -227,19 +245,43 @@ const UpdateProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
                   type="file"
                   id="picture"
                   name="picture"
+                  style={{width:"21rem"}}
                   onChange={(e: any) => {
                     setFieldValue("picture", e.target.files[0]);
                   }}
                 >
                   {" "}
                 </TextField>{" "}
-                <AddPhotoAlternateIcon fontSize="large" color="primary" />
               </div>
             </div>
 
             <div className="addProduct-btn">
-              <Button type="submit" style={{fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem"}}>Actualizar producto</Button>
+              <Button
+                type="submit"
+                style={{
+                  fontFamily: "'Rubik', sans-serif",
+                  fontWeight: "lighter",
+                  letterSpacing: "0.1rem",
+                }}
+              >
+                Actualizar producto
+              </Button>
             </div>
+          </div>
+          <div className="image">
+            {values.picture === initialValues.picture ? (
+              <img
+                src={`data:image/JPG;base64,${values.picture}`}
+                alt=""
+                style={{ height: "16rem", borderRadius: "15px" }}
+              />
+            ) : (
+              <img
+                src={picture}
+                alt=""
+                style={{ height: "18rem", borderRadius: "15px" }}
+              />
+            )}
           </div>
         </div>
       </form>

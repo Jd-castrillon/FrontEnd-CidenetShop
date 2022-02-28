@@ -130,9 +130,15 @@ const TableProducts = () => {
   return (
     <div className="tableProducts-container">
       <div className="filters">
-        
         <div className="filter">
-          <Box sx={{ display: "flex", alignItems: "flex-end" , paddingLeft:"1rem", paddingRight:"1rem" }}>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-end",
+              paddingLeft: "1rem",
+              paddingRight: "1rem",
+            }}
+          >
             <SearchIcon />
             <TextField
               variant="standard"
@@ -141,12 +147,13 @@ const TableProducts = () => {
               name="filter"
               label="filtrar"
               value={filterChange}
+              style={{ top: "3px" }}
               onChange={handleFilterChange}
             ></TextField>
           </Box>
         </div>
         <div className="filter" style={{}}>
-        <InputLabel id="gender">Genero</InputLabel>
+          <InputLabel id="gender">Genero</InputLabel>
 
           <Select
             variant="standard"
@@ -156,7 +163,6 @@ const TableProducts = () => {
             value={genderChange}
             style={{ width: "13rem" }}
             onChange={handleSelectChange}
-            
           >
             <MenuItem value="">Ninguno</MenuItem>
             <MenuItem value="masculino">Masculino</MenuItem>

@@ -62,9 +62,10 @@ const StockProduct = ({ product }: Props) => {
   const handleDelete = async (shortText: string) => {
     deleted();
 
-    DeleteStock(product.id, shortText, getToken());
+    await DeleteStock(product.id, shortText, getToken());
 
     setIsUpdate(isUpdate + 1);
+    await setIsUpdate(isUpdate + 1);
   };
 
   if (showSpinner) {
