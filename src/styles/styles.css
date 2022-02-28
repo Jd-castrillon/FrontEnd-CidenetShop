@@ -1,5 +1,5 @@
 html {
-  font-size: 120%;
+  font-size: 100%;
 }
 
 @media (max-width: 39.9375em) {
@@ -19,7 +19,7 @@ body {
   padding: 0%;
   height: 100%;
   width: 100%;
-  min-height: 200vh;
+  max-width: 100%;
   font-family: 'Rubik', sans-serif;
   background-color: #dbd8d8 h1, h2, h3, h4;
   background-color-margin: 0%;
@@ -83,7 +83,7 @@ button,
 
 .navbar {
   background-color: black;
-  height: 70px;
+  height: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -161,11 +161,11 @@ button,
 
 .nav-item:hover::after {
   width: 100%;
-  background-color: yellow;
+  background-color: #dbd8d8;
 }
 
 .nav-item .active {
-  border-bottom: 1px solid yellow;
+  border-bottom: 1px solid #dbd8d8;
 }
 
 .nav-icon {
@@ -231,13 +231,13 @@ button,
     border-top: 1pxsolid #fff;
     position: absolute;
     top: 50px;
-    left: -110%;
+    left: -100%;
     opacity: 1;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;
   }
   .iconCidenet {
-    left: 100px;
+    left: 120px;
   }
   .nav-menu.active {
     background: #000000;
@@ -248,7 +248,7 @@ button,
     z-index: 1;
   }
   .nav-item .active {
-    color: #ffdd40;
+    color: #dbd8d8;
     border: none;
   }
   .nav-links {
@@ -341,19 +341,20 @@ button,
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   padding-bottom: 10px;
+  margin-left: 2.5rem;
 }
 
 .item-sectionProducts-container {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin: 2rem 2.5rem 1rem 2.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -368,7 +369,6 @@ button,
       -ms-flex-align: center;
           align-items: center;
   width: 15rem;
-  margin: 1rem;
   border-radius: 15px 15px 10px 10px;
   -webkit-box-shadow: 2px 2px 10px #666;
           box-shadow: 2px 2px 10px #666;

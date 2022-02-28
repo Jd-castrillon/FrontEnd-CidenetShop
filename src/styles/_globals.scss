@@ -1,6 +1,7 @@
 html{
-  font-size: 120%;
+  font-size: 100%;
   @include breakpoint-down(small) {
+   
     box-sizing: border-box;
   }
 }
@@ -14,7 +15,7 @@ body {
   padding: 0%;
   height: 100%;
   width: 100%;
-  min-height: 200vh;
+  max-width: 100%;
   font-family: 'Rubik', sans-serif;
   background-color: $Gray
 

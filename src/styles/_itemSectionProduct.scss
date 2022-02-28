@@ -7,24 +7,24 @@
 .wrapper-items {
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: flex-start;
   flex-wrap: wrap;
   padding-bottom: 10px;
+  margin-left: 2.5rem;
 }
 
-.item-sectionProducts {
-}
+
 .item-sectionProducts-container {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  margin: 2rem 2.5rem 1rem 2.5rem;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 15rem;
 
-  margin: 1rem;
+  
 
   border-radius: 15px 15px 10px 10px;
 

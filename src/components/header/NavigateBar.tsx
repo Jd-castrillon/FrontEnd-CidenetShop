@@ -35,7 +35,7 @@ const NavigateBar = () => {
     <div className="navbarcontainer">
       <nav className="navbar">
         <div className="nav-container">
-          <ul className={!click ? "nav-menu left " : "nav-menu left"}>
+          <ul className={!click ? "nav-menu left " : "nav-menu left"} style={{marginRight:"12rem"}}>
             <li className="nav-item" onClick={handleClick}>
               {isLogged() ? (
                 <NavLink to="" className="nav-links">
@@ -95,7 +95,7 @@ const NavigateBar = () => {
                     <NavLink to="/admin" className="nav-links">
                       Administrar
                     </NavLink>
-                    <div>
+                    <div  onClick={logOutFunction}>
                       <NavLink
                         to=""
                         onClick={logOutFunction}
@@ -127,6 +127,7 @@ const NavigateBar = () => {
                 </NavLink>
               )}
             </li>
+            
           </ul>
           <div className="nav-item" onClick={handleClick}>
             <NavLink
@@ -143,6 +144,7 @@ const NavigateBar = () => {
               </Badge>
             </NavLink>
           </div>
+          
           <div className="nav-icon" onClick={handleClick}>
             <MenuIcon />
           </div>
