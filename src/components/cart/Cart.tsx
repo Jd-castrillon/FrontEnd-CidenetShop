@@ -90,7 +90,7 @@ const Cart = () => {
     }
 
     if (
-      queryOutOfStock.message !== "Todos los productos tienen stock suficiente"
+      queryOutOfStock.message !== "All products have enough stock"
     ) {
       console.log(queryOutOfStock);
 

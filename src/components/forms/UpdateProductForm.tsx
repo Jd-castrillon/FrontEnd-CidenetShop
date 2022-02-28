@@ -238,7 +238,7 @@ const UpdateProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
             </div>
 
             <div className="addProduct-btn">
-              <Button type="submit">Actualizar producto</Button>
+              <Button type="submit" style={{fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem"}}>Actualizar producto</Button>
             </div>
           </div>
         </div>

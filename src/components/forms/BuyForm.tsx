@@ -16,7 +16,6 @@ interface Props {
   handleCreateOrder: () => void;
 }
 
-
 const Formulario: React.FC<Props> = ({
   handleClose,
   open,
@@ -55,7 +54,6 @@ const Formulario: React.FC<Props> = ({
             required
             autoFocus
             margin="dense"
-            
             label="Departamento"
             type="text"
             fullWidth
@@ -66,7 +64,6 @@ const Formulario: React.FC<Props> = ({
             required
             autoFocus
             margin="dense"
-            
             label="Ciudad"
             type="text"
             fullWidth
@@ -86,10 +83,25 @@ const Formulario: React.FC<Props> = ({
           />
         </DialogContent>
         <DialogActions>
-          <Button  onClick={handleClose}>
+          <Button
+            style={{
+              fontFamily: "'Rubik', sans-serif",
+              fontWeight: "lighter",
+              letterSpacing: "0.1rem",
+            }}
+            onClick={handleClose}
+          >
             Cancelar
           </Button>
-          <Button disabled={city === "" || address === "" || departamento === ""} onClick={handleCreateOrder}>
+          <Button
+            style={{
+              fontFamily: "'Rubik', sans-serif",
+              fontWeight: "lighter",
+              letterSpacing: "0.1rem",
+            }}
+            disabled={city === "" || address === "" || departamento === ""}
+            onClick={handleCreateOrder}
+          >
             Finalizar pedido
           </Button>
         </DialogActions>

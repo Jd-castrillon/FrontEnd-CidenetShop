@@ -71,8 +71,8 @@ const DeleteProductsForm: FC<Props> = ({ handleClose, open, item }: Props) => {
                 </div >
                 <div style={{display:"flex"}}>
                 
-                <Button onClick={handleClose}>Cancelar</Button>
-                <Button variant="contained" onClick={deleteProduct} color="error" style={{marginLeft:"0.5rem" , background:"#ff2929", color:"white"}}>
+                <Button onClick={handleClose} style={{ fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem" }}>Cancelar</Button>
+                <Button variant="contained" onClick={deleteProduct} color="error" style={{marginLeft:"0.5rem" , background:"#ff2929", color:"white", fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem" }}>
                   Eliminar
                 </Button>
                 </div>

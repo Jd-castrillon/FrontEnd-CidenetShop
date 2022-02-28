@@ -36,7 +36,7 @@ const AlertFailForm = ({ openAlert, handleCloseAlert , message}: Props) => {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseAlert} color="primary">
+          <Button onClick={handleCloseAlert} color="primary" style={{ fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem" }}> 
             continue
           </Button>
         </DialogActions>

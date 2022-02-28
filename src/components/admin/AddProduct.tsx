@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
+import { DialogActions } from "@material-ui/core";
 
 import Button from "@mui/material/Button";
 
@@ -99,7 +100,7 @@ const AddProduct: FC<Props> = ({ handleClose, open }: Props) => {
                 width: "25rem",
                 display: "flex",
                 justifyContent: "space-around",
-                alignItems:"center" 
+                alignItems: "center",
               }}
             >
               <Spinner />
@@ -171,9 +172,19 @@ const AddProduct: FC<Props> = ({ handleClose, open }: Props) => {
                   alignItems: "end",
                 }}
               >
-                <Button onClick={handleClose} color="error">
-                  Cancelar
-                </Button>
+                <DialogActions>
+                  <Button
+                    onClick={handleClose}
+                    color="error"
+                    style={{
+                      fontFamily: "'Rubik', sans-serif",
+                      fontWeight: "lighter",
+                      letterSpacing: "0.1rem",
+                    }}
+                  >
+                    Cancelar
+                  </Button>
+                </DialogActions>
               </div>
             </div>
           )}

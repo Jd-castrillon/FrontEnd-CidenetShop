@@ -12,18 +12,37 @@ interface Props {
   openOutOfStockMessage: boolean;
 }
 
-const OutOfStockMessage: React.FC<Props> = ({ handleCloseOutOfStockMessage, openOutOfStockMessage }: Props) => {
+const OutOfStockMessage: React.FC<Props> = ({
+  handleCloseOutOfStockMessage,
+  openOutOfStockMessage,
+}: Props) => {
   return (
     <div>
-      <Dialog open={openOutOfStockMessage} onClose={handleCloseOutOfStockMessage}>
+      <Dialog
+        open={openOutOfStockMessage}
+        onClose={handleCloseOutOfStockMessage}
+      >
         <DialogTitle>⚠️ Hemos tenido un inconveniente</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Ya no hay stock suficiente para algunos productos que solicitaste, haremos los cambios correspondientes en tu carrito. hemos actualizado la cantidad que puedes solicitar o si ya no hay cantidades disponibles del producto lo removeremos del carrito. Te invitamos a verificar los cambios hechos.
+            Ya no hay stock suficiente para algunos productos que solicitaste,
+            haremos los cambios correspondientes en tu carrito. hemos
+            actualizado la cantidad que puedes solicitar o si ya no hay
+            cantidades disponibles del producto lo removeremos del carrito. Te
+            invitamos a verificar los cambios hechos.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseOutOfStockMessage}>Continuar</Button>
+          <Button
+            style={{
+              fontFamily: "'Rubik', sans-serif",
+              fontWeight: "lighter",
+              letterSpacing: "0.1rem",
+            }}
+            onClick={handleCloseOutOfStockMessage}
+          >
+            Continuar
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

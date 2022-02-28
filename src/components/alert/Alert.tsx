@@ -16,7 +16,7 @@ const Alert = ({ text }: Props) => {
         alignItems="center"
         padding="80px"
         margin="80px 0"
-        style={{whiteSpace:"pre-line"}}
+        style={{ whiteSpace: "pre-line" }}
       >
         <div>
           <h2 style={{ marginBottom: "20px" }}>{text}</h2>
@@ -25,7 +25,12 @@ const Alert = ({ text }: Props) => {
           <Link to="/" style={{ textDecoration: "none" }}>
             <Button
               variant="contained"
-              style={{ backgroundColor: "#4A8BFD", fontWeight: "bold" }}
+              style={{
+                backgroundColor: "#4A8BFD",
+                fontFamily: "'Rubik', sans-serif",
+                fontWeight: "lighter",
+                letterSpacing: "0.1rem",
+              }}
             >
               Ver productos
             </Button>

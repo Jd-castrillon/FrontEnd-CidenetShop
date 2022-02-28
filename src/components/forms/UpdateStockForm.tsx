@@ -78,7 +78,7 @@ const UpdateStockForm: (
           </div>
         
           <div>
-            <Button variant="contained" type="submit">Actualizar</Button>
+            <Button variant="contained" type="submit" style={{fontFamily:"'Rubik', sans-serif",fontWeight:"lighter", letterSpacing:"0.1rem"}}>Actualizar</Button>
           </div>
         </div>
       </form>

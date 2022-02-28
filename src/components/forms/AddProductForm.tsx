@@ -3,7 +3,7 @@ import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
 import Button from "@mui/material/Button";
 
-import {  FormikProps } from "formik";
+import { FormikProps } from "formik";
 import TextField from "@mui/material/TextField";
 
 interface FormModel {
@@ -16,7 +16,7 @@ interface FormModel {
   picture: any;
 }
 
- const AddProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
+const AddProductForm: (props: FormikProps<FormModel>) => JSX.Element = ({
   handleSubmit,
   values,
   handleChange,
@@ -45,8 +45,8 @@ interface FormModel {
               <div
                 style={{
                   color: "red",
-                  display:"flex",
-                  alignItems:"center",
+                  display: "flex",
+                  alignItems: "center",
                   height: "2.35rem",
                   width: "13rem",
                 }}
@@ -57,7 +57,7 @@ interface FormModel {
               <div
                 style={{
                   color: "red",
-                  
+
                   height: "2.35rem",
                   width: "13rem",
                 }}
@@ -231,7 +231,17 @@ interface FormModel {
             ></TextField>
           </div>
           <div className="addProduct-btn">
-            <Button variant="contained" type="submit">Agregar producto</Button>
+            <Button
+              variant="contained"
+              type="submit"
+              style={{
+                fontFamily: "'Rubik', sans-serif",
+                fontWeight: "lighter",
+                letterSpacing: "0.1rem",
+              }}
+            >
+              Agregar producto
+            </Button>
           </div>
         </div>
       </div>

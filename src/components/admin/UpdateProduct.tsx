@@ -144,7 +144,15 @@ const UpdateProduct: FC<Props> = ({ handleClose, open, item }: Props) => {
           ></Formik>
           <StockProduct product={item} />
         </DialogContent>
-        <Button color="error" onClick={handleClose}>
+        <Button
+          color="error"
+          style={{
+            fontFamily: "'Rubik', sans-serif",
+            fontWeight: "lighter",
+            letterSpacing: "0.1rem",
+          }}
+          onClick={handleClose}
+        >
           Cacelar
         </Button>
       </Dialog>

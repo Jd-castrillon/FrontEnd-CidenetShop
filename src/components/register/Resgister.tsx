@@ -93,7 +93,7 @@ const Resgister = () => {
             })
               .then((res) => res.json())
               .then((data) => {
-                if (data.message === "usuario guardado") {
+                if (data.message === "user save") {
                   navigate("/login");
                 } else if (data.message === "That email already exists") {
                   errorEmail();
@@ -126,7 +126,7 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
             <div className="flex   register__main">
               {/* primera columna */}
               <div className="register__column">
-                <div className="register__input" >
+                <div className="register__input">
                   <Select
                     id="documentType"
                     name="documentType"
@@ -171,9 +171,9 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
                 <div className="register__input">
                   {errors.password && touched.password ? (
                     <div style={{ color: "red" }}> {errors.password}</div>
-                  ) : (<div style={{ color: "red" , paddingTop:"1rem" }}>
-
-                  </div>)}
+                  ) : (
+                    <div style={{ color: "red", paddingTop: "1rem" }}></div>
+                  )}
                   <TextField
                     margin="normal"
                     name="password"
@@ -239,7 +239,12 @@ let RegistrationForm: (props: FormikProps<FormModel>) => JSX.Element = ({
               </div>
               <div>
                 <Button
-                  style={{ marginLeft: "1rem" }}
+                  style={{
+                    fontFamily: "'Rubik', sans-serif",
+                    fontWeight: "lighter",
+                    letterSpacing: "0.1rem",
+                    marginLeft: "1rem",
+                  }}
                   type="submit"
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}

@@ -45,7 +45,6 @@ const Login = () => {
     try {
       const user = await login(userName, password);
 
-     
       if (user.token && user.userName && user.authorities) {
         await localStorage.setItem("AuthUser", JSON.stringify(user));
       }
@@ -135,6 +134,13 @@ const Login = () => {
                   fullWidth
                   variant="contained"
                   sx={{ mt: 3, mb: 2 }}
+                  style={{
+                    fontFamily: "'Rubik', sans-serif",
+                    fontWeight: "lighter",
+                    letterSpacing: "0.1rem",
+                    marginTop: "1rem",
+                    marginBottom: "1rem",
+                  }}
                 >
                   Entrar
                 </Button>

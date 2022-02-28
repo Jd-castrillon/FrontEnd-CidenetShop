@@ -3,8 +3,7 @@ import Button from "@mui/material/Button";
 import { newExistingQuantity } from "../../types/NewExtingQuantity";
 import Select from "@mui/material/Select";
 import { MenuItem } from "@mui/material";
-import InputLabel from '@mui/material/InputLabel';
-
+import InputLabel from "@mui/material/InputLabel";
 
 import { FormikProps } from "formik";
 import TextField from "@mui/material/TextField";
@@ -25,15 +24,15 @@ const CreateStockForm: (
         <b>Agregar Talla</b>
       </h4>
       <form onSubmit={handleSubmit}>
-        <div className="createStockForm-container" >
+        <div className="createStockForm-container">
           <div className="select">
-          <InputLabel id="shortText">Talla</InputLabel>
+            <InputLabel id="shortText">Talla</InputLabel>
             <Select
               id="shortText"
               name="shortText"
               onChange={handleChange}
               value={values.shortText}
-              style={{width:"13rem"}}
+              style={{ width: "13rem" }}
             >
               <MenuItem value="XS">XS</MenuItem>
               <MenuItem value="S">S</MenuItem>
@@ -43,7 +42,7 @@ const CreateStockForm: (
             </Select>
           </div>
           <div>
-          {errors.quantity && touched.quantity ? (
+            {errors.quantity && touched.quantity ? (
               <div
                 style={{
                   color: "red",
@@ -73,7 +72,16 @@ const CreateStockForm: (
               className="input"
             ></TextField>
           </div>
-          <Button type="submit">Crear</Button>
+          <Button
+            type="submit"
+            style={{
+              fontFamily: "'Rubik', sans-serif",
+              fontWeight: "lighter",
+              letterSpacing: "0.1rem",
+            }}
+          >
+            Crear
+          </Button>
         </div>
       </form>
     </div>
