@@ -928,6 +928,12 @@ button,
   margin-top: 3rem;
 }
 
+@media (min-width: 40em) {
+  .detail-product .image-title {
+    margin-bottom: 2rem;
+  }
+}
+
 .detail-product .image-title h2 {
   padding-bottom: 1rem;
 }

@@ -1,8 +1,4 @@
 .detail-product {
-
-
-
-  
   .button {
     box-shadow: 5px 5px 20px #666;
   }
@@ -14,20 +10,18 @@
     flex-wrap: wrap;
   }
 
-  .select{
+  .select {
     display: flex;
     align-items: center;
-    
   }
 
-  .container__buttons{
-      display: flex;
+  .container__buttons {
+    display: flex;
   }
 
-  .description{
-      width: 80%;
+  .description {
+    width: 80%;
   }
-
 }
 
 .detail-product img {
@@ -40,14 +34,19 @@
   flex-direction: column;
   align-items: center;
   margin-top: 3rem;
+  @include breakpoint-up(medium) {
+    
+    margin-bottom: 2rem;
+  }
+
   h2 {
     padding-bottom: 1rem;
   }
 }
 
 .detail-product .details {
-  display: flex;  
-  
+  display: flex;
+
   flex-direction: column;
   padding-top: 3rem;
   padding-left: 2rem;
@@ -56,9 +55,9 @@
   height: 10%;
   min-height: 15rem;
 
-  select{
-      height: 1.5rem;
-      width: 5rem;
-      margin-left: 1rem;
+  select {
+    height: 1.5rem;
+    width: 5rem;
+    margin-left: 1rem;
   }
 }
