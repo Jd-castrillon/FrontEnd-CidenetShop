@@ -107,7 +107,14 @@ const TableProducts = () => {
             .toString()
             .toLowerCase()
             .includes(textFilter.toLowerCase()) ||
-          item.color.toString().toLowerCase().includes(textFilter.toLowerCase())
+          item.color
+            .toString()
+            .toLowerCase()
+            .includes(textFilter.toLowerCase()) ||
+          item.brand
+            .toString()
+            .toLowerCase()
+            .includes(textFilter.toLowerCase())
         ) {
           return item;
         }

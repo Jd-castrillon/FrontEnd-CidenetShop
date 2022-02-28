@@ -50,7 +50,8 @@ const ItemListContainer = () => {
     let items: ItemProduct[] = itemProduct.filter((item: ItemProduct) => {
       if (
         item.name.toString().toLowerCase().includes(filter.toLowerCase()) ||
-        item.color.toString().toLowerCase().includes(filter.toLowerCase())
+        item.color.toString().toLowerCase().includes(filter.toLowerCase()) ||
+        item.brand.toString().toLowerCase().includes(filter.toLowerCase())
       ) {
         return item;
       }

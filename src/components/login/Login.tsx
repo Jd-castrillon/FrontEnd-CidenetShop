@@ -57,7 +57,7 @@ const Login = () => {
         navigate("/");
       } else if (isLogged()) {
         navigate(state?.path || "/");
-      } else if (user.message === "No se ha encontrado al usuario") {
+      } else if (user.message === "Don't found user") {
         errorDontFoundUser();
       } else {
         errorLogin();
