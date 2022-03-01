@@ -92,8 +92,6 @@ const Cart = () => {
     if (
       queryOutOfStock.message !== "All products have enough stock"
     ) {
-      console.log(queryOutOfStock);
-      
       queryOutOfStock.forEach((element: OrderDetails) => {
         updateStockInCart(element);
       });
