@@ -3,7 +3,7 @@ import * as React from 'react';
 import { CartContext } from "../context/CartProvider";
 import { OrderDetails } from "../types/ItemProduct";
 
-const AddToOrder = () => {
+const AddOrderDetailsToOrder = () => {
 
     const listOrderDetails: OrderDetails[] = [];
 
@@ -24,4 +24,4 @@ const AddToOrder = () => {
     return listOrderDetails
 }
 
-export default AddToOrder
+export default AddOrderDetailsToOrder

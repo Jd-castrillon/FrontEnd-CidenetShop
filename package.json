@@ -15,7 +15,6 @@
     "@testing-library/user-event": "^12.8.3",
     "@trendyol-js/react-carousel": "^2.0.1",
     "@types/jest": "^26.0.24",
-    "@types/node": "^12.20.36",
     "@types/react": "^17.0.34",
     "@types/react-router-dom": "^5.3.2",
     "base-64": "^1.0.0",
@@ -60,6 +59,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^12.20.46",
     "@types/react-dom": "^17.0.11"
   }
 }

@@ -16,7 +16,7 @@ interface Props {
   handleCreateOrder: () => void;
 }
 
-const Formulario: React.FC<Props> = ({
+const AddressForm: React.FC<Props> = ({
   handleClose,
   open,
   onChangeCity,
@@ -110,4 +110,4 @@ const Formulario: React.FC<Props> = ({
   );
 };
 
-export default Formulario;
+export default AddressForm;

@@ -7,12 +7,12 @@ import OrderAccepted from "./OrderAccepted";
 import OrderRefusedMessage from "./OrderRefusedMessage";
 import OutOfStockMessage from "./OutOfStockMessage";
 import { useNavigate } from "react-router-dom";
-import Formulario from "../forms/BuyForm";
+import AddressForm from "../forms/AddressForm";
 import QueryOutOfStock from "../../service/QueryOutOfStock";
 import { PostCreateOrder } from "../../service/PostCreateOrder";
 import { Order, OrderDetails } from "../../types/ItemProduct";
 import Spinner from "../spinner/Spinner";
-import AddToOrder from "../../service/AddToOrder";
+import AddOrderDetailsToOrder from "../../service/AddOrderDetailsToOrder";
 
 import TableCart from "./TableCart";
 import NavigateBar from "../header/NavigateBar";
@@ -53,14 +53,14 @@ const Cart = () => {
     return <NoProductMessage />;
   }
 
-  const orderDetails: OrderDetails[] = AddToOrder();
+  const orderDetails: OrderDetails[] = AddOrderDetailsToOrder();
 
   const order: Order = { orderAddress: "", orderDetails: [] };
 
   order.orderAddress = departamento + ", " + city + ", " + address;
   order.orderDetails = orderDetails;
 
-  const handleClickOpen = async () => {
+  const handleClickOpen = () => {
     if (isLogged()) {
       setSetShowForm(true);
     } else {
@@ -75,8 +75,9 @@ const Cart = () => {
   const handleCloseOutOfStockMessage = () => {
     setOutOfStockMessage(false);
   };
-
+  
   const handleCreateOrder = async () => {
+    setSetShowForm(false);
     setSpinner(true);
     const queryOutOfStock = await QueryOutOfStock(
       orderDetails,
@@ -97,14 +98,13 @@ const Cart = () => {
       });
 
       setSpinner(false);
-      setSetShowForm(false);
       return setOutOfStockMessage(true);
     }
     const response = await PostCreateOrder(order, getToken());
 
-    if (response.message !== "Orden guardada") {
+    if (response.message !== "Order was created") {
       setSpinner(false);
-      console.log("No se pudo hacer la compra");
+     
       setOrderBad(true);
       resetAmountCart();
     } else {
@@ -130,7 +130,7 @@ const Cart = () => {
       <NavigateBar />
 
       {setShowForm ? (
-        <Formulario
+        <AddressForm
           open={setShowForm}
           handleClose={handleClose}
           onChangeAddress={onChangeAddress}
