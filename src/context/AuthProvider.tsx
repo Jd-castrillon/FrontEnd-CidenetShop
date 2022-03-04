@@ -21,7 +21,7 @@ const AuthProvider: FC = ({ children }) => {
   const logIn = () => {
     const auth = localStorage.getItem("AuthUser");
     if (auth !== null && auth !== undefined) {
-      
+  
      
     }
   };
